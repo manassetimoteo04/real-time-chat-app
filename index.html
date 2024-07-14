@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/style.css">
     <script defer src="https://unpkg.com/feather-icons"></script>
-    <script defer src="src/js/script.js"></script>
+    <script defer type="module" src="src/js/view/script.js"></script>
     <title>Real Time Chat App</title>
 </head>
 
@@ -127,6 +127,69 @@
                 <input type="text" placeholder="Mensagem">
                 <button class="btn-send-message"><i data-feather="send"></i></button>
             </form>
+        </div>
+    </div>
+
+    <div class="my-profile-container hidden">
+        <div class="overlay-profile"></div>
+        <div class="profile-information-container">
+            <h2 class="heading-h2">Meu Perfil <span class="btn-close-profile"><i data-feather="x"></i></span></h2>
+            <div class="profile-avatar-container">
+                <div class="profile-avatar"><img src="src/img/admin.png" alt=""></div>
+                <div class="user-name-container">
+                    <span class="user-profile-name">Manasse timóteo</span>
+                    <span class="username">@manassetimoteo4</span>
+                </div>
+            </div>
+            <span class="profile-tag">Editar informações</span>
+            <form action="" class="edit-profile-info">
+                <div class="form-group">
+                    <div>
+                        <label for="">Primeiro Nome</label>
+                        <input type="text" class="profile-input">
+                    </div>
+                    <div>
+                        <label for="">Segundo Nome</label>
+                        <input type="text" class="profile-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="">Nome de Usuário</label>
+                        <input type="text" class="profile-input">
+                    </div>
+                    <div>
+                        <label for="">Bio</label>
+                        <input type="text" class="profile-input">
+                    </div>
+                </div>
+                <button class="form-btn">Salvar alteração</button>
+            </form>
+
+            <span class="profile-tag">Alterar Senha</span>
+            <form action="" class="edit-profile-info">
+                <div class="form-group">
+                    <div>
+                        <label for="">Senha actual</label>
+                        <input type="password" class="profile-input">
+                    </div>
+                    <div>
+                        <label for="">Nova senha</label>
+                        <input type="password" class="profile-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="">Confirmar senha</label>
+                        <input type="password" class="profile-input">
+                    </div>
+
+                </div>
+                <button class="form-btn">Alterar senha</button>
+            </form>
+
         </div>
     </div>
 </body>
