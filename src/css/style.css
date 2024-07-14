@@ -77,6 +77,10 @@ aside {
     color: var(--color-primary);
 }
 
+.main-nav-list li a {
+    color: var(--color-light);
+}
+
 .main-heading-logo svg {
     color: var(--color-primary);
     fill: var(--color-primary);
@@ -441,6 +445,120 @@ aside {
     transform: rotate(45deg);
 }
 
+/* suggestion */
+.friend-suggestion-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999999999999;
+    overflow: auto;
+
+}
+
+.overlay-suggestion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.suggestion-container {
+    background-color: var(--color-light);
+    padding: 2rem;
+    max-width: 50rem;
+    margin: 5rem auto;
+    border-radius: 1rem;
+    min-height: 55rem;
+    max-height: 55rem;
+}
+
+.suggestion-container h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-suggestion-box {
+    background-color: var(--color-bg-grey);
+    display: flex;
+    align-items: center;
+    border-radius: 5rem;
+    justify-content: space-between;
+    height: 4rem;
+    margin-top: 2rem;
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-suggestion-box input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    font-size: inherit;
+}
+
+.search-suggestion-box input:focus {
+    outline: none;
+}
+
+.suggestion-list {
+    border-top: 1px solid var(--color-gray-light);
+    height: 100%;
+    overflow: auto;
+    max-height: 40rem;
+}
+
+
+
+.suggested-box {
+    display: grid;
+    grid-template-columns: 6rem 1fr 9.9rem;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    align-items: center;
+
+}
+
+.suggestion-content-box div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.suggested-user-name {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.suggested-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: right;
+}
+
+.suggested-action a {
+    color: inherit;
+    padding: 1rem;
+    background-color: var(--color-bg-grey);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.suggested-action a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+}
+
 /* profile */
 .my-profile-container {
     position: fixed;
@@ -455,7 +573,7 @@ aside {
 }
 
 .overlay-profile {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -567,4 +685,26 @@ label {
 
 .hidden {
     display: none;
+}
+
+/* user profile container */
+.user-profile-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999999999999;
+    overflow: auto;
+
+}
+
+.overlay-user-profile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
 }

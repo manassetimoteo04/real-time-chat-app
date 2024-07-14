@@ -16,16 +16,18 @@
         </h1>
         <nav class="main-nav">
             <ul class="main-nav-list">
-                <li><i data-feather="message-square"></i>
+
+                <li><a href="#messages"><i data-feather="message-square"></i></a>
                 </li>
-                <li><i data-feather="bell"></i>
+                <li><a href="#notification"><i data-feather="bell"></i></a>
                 </li>
-                <li><i data-feather="trash-2"></i>
+                <li><a href="#suggestions"><i data-feather="users"></i></a>
                 </li>
+
             </ul>
         </nav>
-        <button class="user-btn"><i data-feather="user"></i>
-        </button>
+        <a href="#profile" class="user-btn"><i data-feather="user"></i>
+        </a>
     </aside>
     <div class="messages-container">
         <div class="message-search-box">
@@ -129,8 +131,37 @@
             </form>
         </div>
     </div>
+    <section class="friend-suggestion-container hidden" id="suggestion">
+        <div class="overlay-suggestion"></div>
+        <div class="suggestion-container">
+            <h2 class="heading-h2">Sugestões de amigos <span class="btn-close-suggestion"><i
+                        data-feather="x"></i></span></h2>
+            <form class="search-suggestion-box">
+                <input type="text" placeholder="Procurar">
+                <i data-feather="search"></i>
+            </form>
+            <div class="suggestion-list">
+                <div class="suggested-box">
+                    <div class="img-box">
+                        <img src="src/img/admin.png" alt="">
+                    </div>
+                    <div class="suggestion-content-box">
+                        <div>
+                            <span class="suggested-user-name">Manasse Timóteo</span>
+                            <span class="suggested-bio">Disponível</span>
+                        </div>
+                    </div>
+                    <div class="suggested-action">
+                        <a href="#userprofile?id=234234" class="profile-link"><i data-feather="user"></i></a>
+                        <a href="#messages?id=234234" class="profile-link"><i data-feather="message-square"></i></a>
+                    </div>
+                </div>
 
-    <div class="my-profile-container hidden">
+
+            </div>
+        </div>
+    </section>
+    <section class="my-profile-container hidden" id="profile">
         <div class="overlay-profile"></div>
         <div class="profile-information-container">
             <h2 class="heading-h2">Meu Perfil <span class="btn-close-profile"><i data-feather="x"></i></span></h2>
@@ -191,7 +222,13 @@
             </form>
 
         </div>
-    </div>
+    </section>
+    <section class="user-profile-container">
+        <div class="overlay-user-profile"></div>
+        <div class="user-profile">
+
+        </div>
+    </section>
 </body>
 
 </html>
