@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-primary: #EF7F56;
+    /* Laranja claro */
+    --color-secondary: #010018;
+    /* Preto */
+    --color-tertiary: #E0BFB7;
+    /* Bege */
+    --color-accent: #CA7F73;
+    /* Rosa claro */
+    --color-light: #FFFFFF;
+    /* Branco */
+    --color-dark: #983F34;
+    /* Vermelho escuro */
+    --color-gray-light: #C0BFC3;
+    /* Cinza claro */
+    --color-gray: #BFBFBF;
+    /* Cinza */
+    --color-gray-dark: #BEC1C2;
+    /* Cinza médio */
+    --color-rose-dark: #AE7F7A;
+    /* Rosa escuro */
+    --colo-bg-grey: #f5f4f4;
+}
+
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 7rem 1fr 2fr;
+    background-color: var(--colo-bg-grey);
+    height: 100vh;
+    padding: 1rem;
+    font-size: 1.6rem;
+    gap: 1rem;
+}
+
+aside {
+    background-color: var(--color-secondary);
+    width: 100%;
+    color: var(--color-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.main-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.main-nav-list li:hover svg {
+    color: var(--color-primary);
+}
+
+.main-heading-logo svg {
+    color: var(--color-primary);
+    fill: var(--color-primary);
+}
+
+.user-btn {
+    background-color: #bfbfbf41;
+    color: var(--color-light);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages-container {
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.message-search-box {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: var(--color-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    height: 7rem;
+
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid var(--color-gray-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+}
+
+.search-form input {
+    background: none;
+    width: 100%;
+    height: 100%;
+}
+
+.search-form svg {
+    width: 1.8rem;
+    color: var(--color-gray-dark);
+}
+
+.btn-new-conversation {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
