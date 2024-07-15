@@ -1,9 +1,10 @@
+// import { createUserAuth } from "../model/createAccount";
+
 feather.replace();
 
-// import { supabase } from "../model/createClient";
-
-export default class View {
+class View {
   messageContainer = document.querySelector(".conversation-box");
+  // parentElement = document.querySelector("");
 
   constructor() {
     this._scrollConversationContainer();
@@ -22,9 +23,18 @@ export default class View {
   _scrollConversationContainer() {
     this.messageContainer.scrollTop = this.messageContainer.scrollHeight;
   }
+  redirectLogin() {
+    const container = document.querySelector(".login-container");
+    container.classList.remove("hidden");
+  }
+  redirectApp() {
+    const container = document.querySelector(".login-container");
+    container.classList.add("hidden");
+  }
 
   render(data) {}
   renderError(err) {}
   renderSpinner() {}
 }
-const view = new View();
+const newc = new View();
+export default new View();
