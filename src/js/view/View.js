@@ -1,6 +1,6 @@
 feather.replace();
 
-import { supabase } from "../model/createClient";
+// import { supabase } from "../model/createClient";
 
 export default class View {
   messageContainer = document.querySelector(".conversation-box");
