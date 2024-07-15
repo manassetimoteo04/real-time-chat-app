@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/css/style.css">
     <script defer src="https://unpkg.com/feather-icons"></script>
-    <script defer type="module" src="src/js/view/script.js"></script>
+    <script defer type="module" src="src/js/view/View.js"></script>
     <title>Real Time Chat App</title>
 </head>
 
@@ -131,7 +131,7 @@
             </form>
         </div>
     </div>
-    <section class="friend-suggestion-container hidden" id="suggestion">
+    <section class="friend-suggestion-container hidden" id="suggestions">
         <div class="overlay-suggestion"></div>
         <div class="suggestion-container">
             <h2 class="heading-h2">Sugestões de amigos <span class="btn-close-suggestion"><i
@@ -223,10 +223,46 @@
 
         </div>
     </section>
-    <section class="user-profile-container">
-        <div class="overlay-user-profile"></div>
-        <div class="user-profile">
+    <section class="user-profile-container hidden" id="userprofile">
 
+        <div class="overlay-user-profile"></div>
+        <div class="user-profile-box">
+            <div class="user-profile-header">
+
+
+                <span class="block-user"><i data-feather="lock"></i></span>
+                <span class="close-user-profile"><i data-feather="x"></i></span>
+
+            </div>
+            <div class="user-img-box"><img src="src/img/admin.png" alt=""></div>
+
+            <div class="user-content-box">
+                <span class="user-profile-name">Manasse Timóteo</span>
+                <span class="profile-username">@manassetimoteo4</span>
+            </div>
+            <div class="user-contacts-buttons">
+                <a href="#messages?id=2133" class="send-user-message">Conversar <i
+                        data-feather="message-square"></i></a>
+                <a href="#messages?id=2133" class="send-user-message">Ligar <i data-feather="phone"></i></a>
+            </div>
+
+            <div class="information-container">
+                <span class="container-tag">Informações Pessoais</span>
+                <div class="information-box"><span class="label"><i data-feather="mail"></i> Email</span> <span
+                        class="infor-text">manassetimoteo4@gmail.com</span></div>
+                <div class="information-box"><span class="label"><i data-feather="calendar"></i> Data de
+                        nascimento</span>
+                    <span class="infor-text">08
+                        Abril 2006</span>
+                </div>
+
+                <div class="information-box"><span class="label"><i data-feather="phone"></i> Telefone</span> <span
+                        class="infor-text">+244 940 407
+                        979</span></div>
+                <div class="information-box"><span class="label"><i data-feather="map-pin"></i> Endereço de
+                        Residência</span> <span class="infor-text">+244 940 407
+                        979</span></div>
+            </div>
         </div>
     </section>
 </body>
