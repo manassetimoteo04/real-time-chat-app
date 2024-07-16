@@ -1,7 +1,11 @@
 import { getCurrentUser } from "../model/services/login";
 import View from "../view/View";
 export const controlUser = async function () {
-  const user = await getCurrentUser();
-  !user?.role && View.redirectLogin();
-  user?.role && View.redirectApp();
+  try {
+    const user = await getCurrentUser();
+    !user && new View().redirectLogin();
+    user && new View().redirectApp();
+  } catch (error) {
+    console.log(error);
+  }
 };

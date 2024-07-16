@@ -7,8 +7,12 @@ class Login {
 
     this._loginForm?.addEventListener("submit", (e) => {
       e.preventDefault();
-      console.log();
+      window.location.hash = "";
       handler(emailValue.value, passwordValue.value);
+      setTimeout(() => {
+        location.reload();
+        window.location.hash = "";
+      }, 1000);
     });
   }
 }

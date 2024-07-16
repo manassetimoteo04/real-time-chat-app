@@ -17,19 +17,16 @@
         <nav class="main-nav">
             <ul class="main-nav-list">
 
-                <li><a href="#" data-path="/"><i data-feather="message-square"></i></a>
+                <li><a href=""><i data-feather="message-square"></i></a>
                 </li>
-                <li><a href="#" data-path="/notification"><i data-feather="bell"></i></a>
+                <li><a href="#notification"><i data-feather="bell"></i></a>
                 </li>
-                <li><a href="#" data-path="/suggestions"><i data-feather="users"></i></a>
+                <li><a href="#suggestions"><i data-feather="users"></i></a>
                 </li>
 
             </ul>
         </nav>
-        <div>
-            <a href="#" data-path="/profile" class="user-btn"><i data-feather="user"></i>
-                <a href="#login" class="logout user-btn"><i data-feather="log-out"></i></a>
-        </div>
+        <a href="#profile" class="user-btn"><i data-feather="user"></i>
         </a>
     </aside>
     <div class="messages-container">
@@ -39,7 +36,7 @@
                 <input type="text" placeholder="Search">
                 <i data-feather="search"></i>
             </form>
-            <a href="#suggestions" class="btn-new-conversation"><i data-feather="plus"></i></a>
+            <button class="btn-new-conversation"><i data-feather="plus"></i></button>
         </div>
 
         <div class="messages-list-container">
@@ -129,7 +126,7 @@
         <div class="send-message-box">
             <form class="send-message-form">
                 <span class="user-emoji"><i data-feather="smile"></i></span>
-                <input type="text" placeholder="Mensagem" class="input-message">
+                <input type="text" placeholder="Mensagem">
                 <button class="btn-send-message"><i data-feather="send"></i></button>
             </form>
         </div>
@@ -169,10 +166,7 @@
         <div class="profile-information-container">
             <h2 class="heading-h2">Meu Perfil <span class="btn-close-profile"><i data-feather="x"></i></span></h2>
             <div class="profile-avatar-container">
-                <div class="profile-avatar"><img src="src/img/admin.png" alt="">
-                    <span class="btn-upload"><i data-feather="edit"></i> <input type="file" accept="image/*"
-                            id="upload-input"></span>
-                </div>
+                <div class="profile-avatar"><img src="src/img/admin.png" alt=""></div>
                 <div class="user-name-container">
                     <span class="user-profile-name">Manasse timóteo</span>
                     <span class="username">@manassetimoteo4</span>
@@ -271,7 +265,20 @@
             </div>
         </div>
     </section>
-    <section class="login-container hidden" id="login">
+    <section class="login-container hidden ">
+        <div class="overlay-login"></div>
+        <form action="" class="login-form">
+            <h3 class="heading-h3">Login to Chat</h3>
+            <label for="">Email</label>
+            <input type="email" name="" class="email-input">
+
+            <label for="">Senha</label>
+            <input type="password" name="" class="password-input">
+            <button>Login</button>
+        </form>
+    </section>
+
+    <section class="sign-up-container  hidden">
         <div class="overlay-login"></div>
         <form action="" class="sign-up-form">
             <h3 class="heading-h3">Sign Up</h3>
@@ -287,24 +294,6 @@
             <input type="password" name="" class="password-sign-up">
             <button>Sign Up</button>
         </form>
-    </section>
-
-    <section class="sign-up-container hidden">
-        <div class="overlay-login"></div>
-        <!-- <form action="" class="sign-up-form">
-            <h3 class="heading-h3">Sign Up</h3>
-            <label for="">Nome Completo</label>
-            <input type="text" name="" class="name-sign-up">
-            <label for="">Nome de usário</label>
-            <input type="text" name="" class="username-sign-up">
-
-            <label for="">Email</label>
-            <input type="email" name="" class="email-sign-up">
-
-            <label for="">Senha</label>
-            <input type="password" name="" class="password-sign-up">
-            <button>Sign Up</button>
-        </form> -->
     </section>
 </body>
 

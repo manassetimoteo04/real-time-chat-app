@@ -1,24 +1,26 @@
 // import { createUserAuth } from "../model/createAccount";
-
 feather.replace();
 
-class View {
+export default class View {
   messageContainer = document.querySelector(".conversation-box");
-  // parentElement = document.querySelector("");
 
   constructor() {
     this._scrollConversationContainer();
+    window.addEventListener("load", this._handlingHashEvent.bind(this));
+
     window.addEventListener("hashchange", this._handlingHashEvent.bind(this));
   }
   _handlingHashEvent() {
-    let section = window.location.hash;
-    if (section.includes("?")) section = section.split("?")[0];
+    let secID = window.location.hash;
+    if (secID.includes("?")) secID = secID.split("?")[0];
 
-    console.log(section);
+    if (secID === "") secID = "#messages";
     document
       .querySelectorAll("section")
       .forEach((s) => s.classList.add("hidden"));
-    document.querySelector(`${section}`).classList.remove("hidden");
+    const section = document.querySelector(`${secID}`);
+    if (!section) return;
+    section.classList.remove("hidden");
   }
   _scrollConversationContainer() {
     this.messageContainer.scrollTop = this.messageContainer.scrollHeight;
@@ -32,9 +34,17 @@ class View {
     container.classList.add("hidden");
   }
 
-  render(data) {}
+  render(data, render = false) {
+    if (!render) return;
+    console.log(data);
+    const markup = this.generateMarkup(data);
+    this._clean();
+    this.parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
+  _clean() {
+    this.parentElement.innerHTML = "";
+  }
   renderError(err) {}
   renderSpinner() {}
 }
-const newc = new View();
-export default new View();
+// const newc = new View();

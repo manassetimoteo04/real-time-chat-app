@@ -8,14 +8,19 @@ export async function login(email, password) {
   });
   if (error) throw new Error(error.message);
   console.log(data);
+  localStorage.setItem("user_id", data.user.id);
+
   return data;
 }
 
 export async function getCurrentUser() {
-  const { data: session } = await supabase.auth.getSession();
-  console.log(session);
-  if (!session) return null;
-  const { data, error } = await supabase.auth.getUser();
-  if (error) throw new Error(error.message);
-  return data?.user;
+  // const {
+  //   data: { user },
+  //   error,
+  // } = await supabase.auth.getUser();
+  // if (error) {
+  //   console.error("Error fetching user:", error.message);
+  //   throw new Error("Auth session missing!");
+  // }
+  // return user ? user : null;
 }
