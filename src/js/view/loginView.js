@@ -10,7 +10,6 @@ class Login {
       window.location.hash = "";
       handler(emailValue.value, passwordValue.value);
       setTimeout(() => {
-        location.reload();
         window.location.hash = "";
       }, 1000);
     });

@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <aside class="side-bar-container">
         <h1 class="main-heading-logo"><i data-feather="star"></i>
         </h1>
@@ -39,7 +40,7 @@
                 <input type="text" placeholder="Search">
                 <i data-feather="search"></i>
             </form>
-            <a href="#suggestions" class="btn-new-conversation"><i data-feather="plus"></i></a>
+            <a href="#suggestions" data-path="/suggestions" class="btn-new-conversation"><i data-feather="plus"></i></a>
         </div>
 
         <div class="messages-list-container">
@@ -109,13 +110,6 @@
         </div>
         <div class="conversation-box">
             <span class="curr-date">10 Julho, 2024</span>
-            <div class="received-message"><span class="text-message">Bom dia sim como vai?</span>
-                <span class="message-time">10:20 AM</span>
-            </div>
-            <div class="sent-message"><span class="text-message">Bom dia sim como vai?</span>
-                <span class="message-time">10:20 AM</span>
-            </div>
-
             <div class="received-message"><span class="text-message">Bom dia sim como vai?</span>
                 <span class="message-time">10:20 AM</span>
             </div>
@@ -271,8 +265,22 @@
             </div>
         </div>
     </section>
-    <section class="login-container hidden" id="login">
+    <section class="login-container hidden" id="login" hidden>
         <div class="overlay-login"></div>
+        <form action="" class="login-form">
+            <h3 class="heading-h3">Login to Chat</h3>
+            <label for="">Email</label>
+            <input type="email" name="" class="email-input">
+
+            <label for="">Senha</label>
+            <input type="password" name="" class="password-input">
+            <button>Login</button>
+        </form>
+    </section>
+
+    <section class="sign-up-container hidden" hidden>
+        <div class=" overlay-login">
+        </div>
         <form action="" class="sign-up-form">
             <h3 class="heading-h3">Sign Up</h3>
             <label for="">Nome Completo</label>
@@ -287,24 +295,6 @@
             <input type="password" name="" class="password-sign-up">
             <button>Sign Up</button>
         </form>
-    </section>
-
-    <section class="sign-up-container hidden">
-        <div class="overlay-login"></div>
-        <!-- <form action="" class="sign-up-form">
-            <h3 class="heading-h3">Sign Up</h3>
-            <label for="">Nome Completo</label>
-            <input type="text" name="" class="name-sign-up">
-            <label for="">Nome de usário</label>
-            <input type="text" name="" class="username-sign-up">
-
-            <label for="">Email</label>
-            <input type="email" name="" class="email-sign-up">
-
-            <label for="">Senha</label>
-            <input type="password" name="" class="password-sign-up">
-            <button>Sign Up</button>
-        </form> -->
     </section>
 </body>
 

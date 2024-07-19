@@ -13,17 +13,23 @@ class RouterView {
   }
 
   addNavEventListeners() {
-    document.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        console.log(link);
-        const path = link.getAttribute("data-path");
-
-        console.log(path);
-        history.pushState(null, "", path);
-        this.updateContent(path);
-      });
+    const body = document.querySelector("body");
+    body.addEventListener("click", (e) => {
+      const target = e.target.closest("a");
+      if (!target) return;
+      const path = target.getAttribute("data-path");
+      history.pushState(null, "", path);
+      this.updateContent(path);
     });
+    // document.querySelectorAll("a[data-path]").forEach((link) => {
+    //   link.addEventListener("click", (event) => {
+    //     event.preventDefault();
+    //     const path = link.getAttribute("data-path");
+
+    //     history.pushState(null, "", path);
+    //     this.updateContent(path);
+    //   });
+    // });
   }
 
   updateContent(path) {
@@ -40,6 +46,12 @@ class RouterView {
         break;
       case "/profile":
         document.getElementById("profile").classList.remove("hidden");
+        break;
+      case "/userprofile":
+        document.getElementById("userprofile").classList.remove("hidden");
+        break;
+      case "/messages":
+        document.getElementById("suggestions").classList.add("hidden");
         break;
       case "/":
       default:

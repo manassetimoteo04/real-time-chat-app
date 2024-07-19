@@ -6,9 +6,9 @@ export default class View {
 
   constructor() {
     this._scrollConversationContainer();
-    window.addEventListener("load", this._handlingHashEvent.bind(this));
+    // window.addEventListener("load", this._handlingHashEvent.bind(this));
 
-    window.addEventListener("hashchange", this._handlingHashEvent.bind(this));
+    // window.addEventListener("hashchange", this._handlingHashEvent.bind(this));
   }
   _handlingHashEvent() {
     let secID = window.location.hash;
@@ -36,15 +36,25 @@ export default class View {
 
   render(data, render = false) {
     if (!render) return;
-    console.log(data);
     const markup = this.generateMarkup(data);
     this._clean();
-    this.parentElement.insertAdjacentHTML("afterbegin", markup);
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
+  }
+  update(data, render = false) {
+    if (!render) return;
+    const markup = this.generateMarkup(data);
+    this._clean();
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
   }
   _clean() {
     this.parentElement.innerHTML = "";
   }
   renderError(err) {}
-  renderSpinner() {}
+  renderSpinner() {
+    const markup = `<div class="spinner-container">
+    <div class="spinner"></div>
+   </div>`;
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
+  }
 }
 // const newc = new View();

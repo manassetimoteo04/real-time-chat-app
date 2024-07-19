@@ -3,29 +3,59 @@ export const conversationState = [];
 
 export async function getConversation() {
   const id = localStorage.getItem("user_id");
+  if (!id) {
+    console.error("ID do usuário não disponível no localtsorage");
+    return;
+  }
+
   const { data: conversations, error } = await supabase
     .from("conversations")
     .select()
     .eq("user_id1", id);
+
+  if (error) {
+    console.error("Error fetching conversa onde o user é user_id1:", error);
+  }
 
   const { data: conversations2, error: err2 } = await supabase
     .from("conversations")
     .select()
     .eq("user_id2", id);
 
-  if (error || err2) {
-    console.error("Error fetching conversations:", error || err2);
-    return;
+  if (err2) {
+    console.error("Error fetching conversations where user is user_id2:", err2);
   }
 
-  const conversationList = [...conversations, ...conversations2];
-  return await buildState(conversationList);
+  const conversationList = [
+    ...(conversations || []),
+    ...(conversations2 || []),
+  ];
+  const sorted = conversationList.sort(
+    (a, b) => new Date(a.last_msg) - new Date(b.last_msg)
+  );
+  const list = Array.from(new Set(sorted));
+  console.log(sorted);
+  return await buildState(sorted);
 }
 
-async function getMessages(id) {
+export async function getSingleConversation(id) {
+  const { data, error } = await supabase
+    .from("conversations")
+    .select()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error fetching conversa onde o user é user_id1:", error);
+  }
+  const list = Array.from(new Set(data));
+  const x = Array.from(new Set(await buildState(list)));
+  return await buildSingleState(list);
+}
+
+export async function getMessages(id) {
   const { data, error } = await supabase
     .from("messages")
-    .select()
+    .select("*")
     .eq("conversation_id", id);
 
   if (error) throw new Error(error.message);
@@ -34,34 +64,79 @@ async function getMessages(id) {
 
 async function getUser2(id1, id2) {
   const id = localStorage.getItem("user_id");
+  if (!id) {
+    console.error("User ID is not available in localStorage");
+    return;
+  }
+
   const userId = id === id1 ? id2 : id1;
 
   const { data, error } = await supabase
     .from("users")
     .select()
-    .eq("auth_id", userId)
-    .single();
+    .eq("auth_id", userId);
 
   if (error) throw new Error(error.message);
-  return data;
+  if (data.length === 0) {
+    return new Error("No user found with the given auth_id");
+  }
+  if (data.length > 1)
+    throw new Error("Multiple users found with the same auth_id");
+
+  return data[0]; // Return the single user object
 }
 
 async function buildState(list) {
-  const arrays = await Promise.all(
+  await Promise.all(
     list.map(async (el) => {
-      const user = await getUser2(el.user_id1, el.user_id2);
-      const msg = await getMessages(el.id);
-      const obj = { user, message: msg, id: el.id };
-      conversationState.push(obj);
-      return obj;
+      try {
+        const user = await getUser2(el.user_id1, el.user_id2);
+        const msg = await getMessages(el.id);
+        const messages = msg.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+        const obj = {
+          user,
+          message: messages,
+          id: el.id,
+          last_msg: el.last_msg,
+        };
+        conversationState.push(obj);
+        return obj;
+      } catch (error) {
+        console.error("Error building state for conversation:", error);
+      }
     })
   );
 
   return conversationState;
 }
 
-// const id2 = "cee5401b-2233-46e2-9ee8-f58376a63be1";
-// const id1 = "6f40b269-9daf-4fe0-a797-d5d9d3b43078";
-// getUser2(id1, id2);
+async function buildSingleState(list) {
+  const state = [];
+  await Promise.all(
+    list.map(async (el) => {
+      try {
+        const user = await getUser2(el.user_id1, el.user_id2);
+        const msg = await getMessages(el.id);
+        const messages = msg.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+        const obj = {
+          user,
+          message: messages,
+          id: el.id,
+          last_msg: el.last_msg,
+          user_id1: el.user_id1,
+          user_id2: el.user_id2,
+        };
+        state.push(obj);
+        return obj;
+      } catch (error) {
+        console.error("Error building state for conversation:", error);
+      }
+    })
+  );
 
-// export const one = 23;
+  return state;
+}

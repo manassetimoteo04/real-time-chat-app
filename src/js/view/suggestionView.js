@@ -20,6 +20,14 @@ class SuggestionView extends View {
       this._sectionContainer.classList.toggle("hidden");
     }
   }
+  _handlingHashEvent(handler) {
+    this.parentElement.addEventListener("click", (e) => {
+      const target = e.target.closest(".sendMessage");
+      if (!target) return;
+      const send = target.closest(".suggested-box");
+      // if () alert();
+    });
+  }
   generateMarkup(data) {
     const string = data.map((d) => this._settMarkup(d)).join("");
     return string;
@@ -28,7 +36,7 @@ class SuggestionView extends View {
     feather.replace();
 
     return `
-    <div class="suggested-box">
+    <div class="suggested-box" data-id="${data.id}">
     <div class="img-box">
         <img src="${data.profile_img ? data.profile_img : img}" alt="">
     </div>
@@ -39,12 +47,12 @@ class SuggestionView extends View {
         </div>
     </div>
     <div class="suggested-action">
-        <a href="#userprofile?id=${
-          data.id
+        <a href="/userprofile#${
+          data.auth_id
         }" class="profile-link"><i data-feather="user"></i></a>
-        <a href="#messages?id=${
-          data.id
-        }" class="profile-link"><i data-feather="message-square"></i></a>
+        <a href="#${
+          data.auth_id
+        }" class="profile-link sendMessage" data-path="/messages"><i data-feather="message-square"></i></a>
     </div>
    </div>
     `;

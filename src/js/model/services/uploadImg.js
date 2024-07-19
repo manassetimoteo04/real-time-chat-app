@@ -11,10 +11,9 @@ export async function uploadImage(file) {
       console.error("Error uploading file:", error.message);
     } else {
       console.log("File uploaded:", data);
-      // Agora você pode armazenar o link da imagem no banco de dados
       const fileUrl = `${supabaseUrl}/storage/v1/object/public/images/${data.path}`;
-      console.log("File URL:", fileUrl);
       storeImageLink(fileUrl);
+      console.log(fileUrl);
     }
   } else {
     console.log("No file selected");
@@ -23,14 +22,12 @@ export async function uploadImage(file) {
 
 async function storeImageLink(url) {
   const id = localStorage.getItem("user_id");
-  console.log(id);
   const { data, error } = await supabase
     .from("users")
     .update({ profile_img: url }) // Atualiza apenas a coluna 'username'
     .eq("auth_id", id)
     .single();
 
-  console.log(data);
   if (error) {
     console.error("Error updating username:", error.message);
     return null;
