@@ -5,20 +5,12 @@ export async function login(email, password) {
     email: email,
     password: password,
   });
-  if (error) throw new Error(error.message);
+  if (error) {
+    console.log(email, password);
+    console.log(error);
+    throw new Error(error.message);
+  }
   localStorage.setItem("user_id", data.user.id);
 
   return data;
-}
-
-export async function getCurrentUser() {
-  // const {
-  //   data: { user },
-  //   error,
-  // } = await supabase.auth.getUser();
-  // if (error) {
-  //   console.error("Error fetching user:", error.message);
-  //   throw new Error("Auth session missing!");
-  // }
-  // return user ? user : null;
 }

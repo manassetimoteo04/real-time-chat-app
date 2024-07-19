@@ -50,6 +50,8 @@ const subscriber = function () {
         }
 
         try {
+          // createConversationView.buttonSpinner();
+
           const data = await getSingleConversation(payload.new.conversation_id);
           updateConversation(payload, data);
           updateMessageContainer(payload, data);
@@ -98,9 +100,7 @@ export const suggestionController = async function () {
 const uploadImgController = function (file) {
   uploadImage(file);
 };
-const hashLogoutController = function () {
-  logoutView._preventHashChange();
-};
+
 export const messagesController = async function (id) {
   try {
     messageView._clean();
@@ -137,7 +137,6 @@ const ProfileController = async function () {
 const init = function () {
   ProfileController();
   new View().bodySpinner();
-  hashLogoutController();
   suggestionController();
   loginView._handleEvent(loginCrontroller);
   SignUpView._handleEvent(signUpController);
@@ -161,6 +160,18 @@ const checkAuthentication = async () => {
   } else {
     // Iniciar o aplicativo apenas se o usuário estiver autenticado
     // init();
+  }
+};
+
+const createConversationController = async function (message) {
+  try {
+    createConversationView.buttonSpinner();
+    const id1 = localStorage.getItem("user_id");
+    const id2 = location.hash.slice(1);
+    await createConversation(id1, id2, message);
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
   }
 };
 checkAuthentication();

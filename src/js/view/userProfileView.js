@@ -20,8 +20,9 @@ class ProfileView extends View {
     }
   }
   _settingMyProfileContent(data) {
-    const name = data.full_name.split(" ");
+    const name = data?.full_name?.split(" ");
     const img = document.querySelector(".profile-avatar img");
+    if (!img) return;
     const fullName = document.querySelector(".user-profile-name");
     const username = document.querySelector(".username");
     const firstNameInput = document.querySelector(".first-name-input");

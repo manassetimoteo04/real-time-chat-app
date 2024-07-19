@@ -71,12 +71,12 @@ export default class View {
     this.parentElement.insertAdjacentHTML("beforeend", markup);
   }
   buttonSpinner() {
-    if (!this.parentElement) return;
-
-    const markup = `<div class="spinner-container">
-    <div class="spinner"></div>
+    if (!this.buttonElement) return;
+    const markup = `  <div class="button-spinner">
+    <div class="btn-spinner"></div>
    </div>`;
-    this.parentElement.insertAdjacentHTML("beforeend", markup);
+    this.buttonElement.insertAdjacentHTML("beforeend", markup);
+    this.buttonElement.disabled = true;
   }
 }
 // const newc = new View();

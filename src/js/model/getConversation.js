@@ -31,11 +31,10 @@ export async function getConversation() {
     ...(conversations2 || []),
   ];
   const sorted = conversationList.sort(
-    (a, b) => new Date(a.last_msg) - new Date(b.last_msg)
+    (a, b) => new Date(b.last_msg) - new Date(a.last_msg)
   );
   const list = Array.from(new Set(sorted));
-  console.log(sorted);
-  return await buildState(sorted);
+  return await buildState(list);
 }
 
 export async function getSingleConversation(id) {

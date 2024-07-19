@@ -13,8 +13,6 @@ export async function createConversation(userid1, userId2, message) {
     .from("conversations")
     .select("*");
   const existingConversation = helper(conversations, userid1, userId2);
-  console.log(userid1, userid1);
-  console.log(existingConversation);
 
   if (existingConversation) {
     console.log("Conversation already exists between these users.");
