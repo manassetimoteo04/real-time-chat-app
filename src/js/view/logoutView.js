@@ -2,7 +2,7 @@ class logoutView {
   _parentElement = document.querySelector(".login-container");
   _handleEvent(handler) {
     const btn = document.querySelector(".logout");
-    btn.addEventListener("click", () => {
+    btn?.addEventListener("click", () => {
       handler();
     });
   }
@@ -13,7 +13,6 @@ class logoutView {
   _onChange() {
     const id = localStorage.getItem("user_id");
     if (!id) {
-
       location.hash = "#login";
     }
   }

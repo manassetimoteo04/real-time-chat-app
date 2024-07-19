@@ -1,8 +1,10 @@
 import { supabase } from "../supabase";
-const helper = (data, col, user_id) => {
-  const some = data.find((d) => d?.[col] === user_id);
-  console.log(`Checking if ${user_id} exists in column ${col}:`, some);
-  return some;
+const helper = (data, userid1, userId2) => {
+  return data.find(
+    (d) =>
+      (d.user_id1 === userid1 && d.user_id2 === userId2) ||
+      (d.user_id1 === userId2 && d.user_id2 === userid1)
+  );
 };
 
 // helper([{ id: 1 }, { id: 1 }], "id");
@@ -10,13 +12,13 @@ export async function createConversation(userid1, userId2, message) {
   let { data: conversations, error } = await supabase
     .from("conversations")
     .select("*");
-  const existsInUserId1 = helper(conversations, "user_id1", userId2);
-  const existsInUserId2 = helper(conversations, "user_id2", userId2);
-  if (existsInUserId1 || existsInUserId2) {
-    console.log("Conversation already exists between these users.");
-    const data = existsInUserId1 || existsInUserId2;
-    message && sendMessage(userid1, message, data.id);
+  const existingConversation = helper(conversations, userid1, userId2);
+  console.log(userid1, userid1);
+  console.log(existingConversation);
 
+  if (existingConversation) {
+    console.log("Conversation already exists between these users.");
+    message && sendMessage(userid1, message, existingConversation.id);
     return;
   }
 

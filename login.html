@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
+    <script defer src="https://unpkg.com/feather-icons"></script>
+    <script defer type="module" src="src/js/controller/controller.js"></script>
+    <title>Login or Register - Real Time Chat App</title>
+</head>
+
+<body>
+
+
+    <div class="spinner-container" id="spinner">
+        <div class="spinner"></div>
+    </div>
+    <section class="login-container">
+        <div class="overlay-login"></div>
+        <form action="" class="login-form">
+            <h3 class="heading-h3">Login to Chat</h3>
+            <label for="">Email</label>
+            <input type="email" name="" class="email-input">
+            <label for="">Senha</label>
+            <input type="password" name="" class="password-input">
+            <button>Login</button>
+
+            <span class="tag-form">Não tem uma conta? <span class="toggle-register">Criar conta</span>
+        </form>
+
+        <form action="" class="sign-up-form hidden">
+            <h3 class="heading-h3">Sign Up</h3>
+            <label for="">Nome Completo</label>
+            <input type="text" name="" class="name-sign-up">
+            <label for="">Nome de usário</label>
+            <input type="text" name="" class="username-sign-up">
+
+            <label for="">Email</label>
+            <input type="email" name="" class="email-sign-up">
+
+            <label for="">Senha</label>
+            <input type="password" name="" class="password-sign-up">
+            <button>Sign Up</button>
+
+            <span class="tag-form">Já tem uma conta? <span class="toggle-login">Iniciar sessão</span>
+            </span>
+        </form>
+    </section>
+</body>
+
+</html>

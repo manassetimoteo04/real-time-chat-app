@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="src/css/style.css">
     <script defer src="https://unpkg.com/feather-icons"></script>
     <script defer type="module" src="src/js/controller/controller.js"></script>
+    <script defer type="module" src="src/js/model/services/redirects.js"></script>
     <title>Real Time Chat App</title>
 </head>
 
 <body>
-
+    <div class="spinner-container" id="spinner">
+        <div class="spinner"></div>
+    </div>
     <aside class="side-bar-container">
         <h1 class="main-heading-logo"><i data-feather="star"></i>
         </h1>
@@ -29,7 +32,7 @@
         </nav>
         <div>
             <a href="#" data-path="/profile" class="user-btn"><i data-feather="user"></i>
-                <a href="#login" class="logout user-btn"><i data-feather="log-out"></i></a>
+                <a href="login.html" class="logout user-btn"><i data-feather="log-out"></i></a>
         </div>
         </a>
     </aside>
@@ -44,7 +47,7 @@
         </div>
 
         <div class="messages-list-container">
-
+            <!-- 
             <div class="message-box">
                 <div class="img-box">
                     <img src="src/img/admin.png" alt="">
@@ -78,7 +81,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
         </div>
 
@@ -92,30 +95,30 @@
         <div class="conversation-header-box">
             <div class="conversation-user-box">
                 <div class="img-box">
-                    <img src="src/img/admin.png" alt="">
+                    <img src="src/img/admin.png" alt="" class="message-img">
                 </div>
                 <div>
-                    <span class="message-user-name">Manasse Timóteo</span>
+                    <span class="message-user-name"><span>Manasse Timóteo</span></span>
                     <span class="user-status">online</span>
                 </div>
             </div>
             <div class="conversation-user-setts">
                 <div>
 
-                    <span class="see-profile"> <i data-feather="user"></i> </span>
-                    <span class="make-call"> <i data-feather="phone"></i></span>
+                    <a href="#" class="see-profile" data-path="/userprofile"> <i data-feather="user"></i> </a>
+                    <a class="make-call"> <i data-feather="phone"></i></a>
                 </div>
                 <span class="conversation-setts"> <i data-feather="settings"></i></span>
             </div>
         </div>
         <div class="conversation-box">
-            <span class="curr-date">10 Julho, 2024</span>
+            <!-- <span class="curr-date">10 Julho, 2024</span>
             <div class="received-message"><span class="text-message">Bom dia sim como vai?</span>
                 <span class="message-time">10:20 AM</span>
             </div>
             <div class="sent-message"><span class="text-message">Bom dia sim como vai?</span>
                 <span class="message-time">10:20 AM</span>
-            </div>
+            </div> -->
 
 
 
@@ -177,22 +180,33 @@
                 <div class="form-group">
                     <div>
                         <label for="">Primeiro Nome</label>
-                        <input type="text" class="profile-input">
+                        <input type="text" class="profile-input first-name-input">
                     </div>
                     <div>
                         <label for="">Segundo Nome</label>
-                        <input type="text" class="profile-input">
+                        <input type="text" class="profile-input last-name-input">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label for="">Nome de Usuário</label>
-                        <input type="text" class="profile-input">
+                        <input type="text" class="profile-input username-input">
                     </div>
                     <div>
                         <label for="">Bio</label>
-                        <input type="text" class="profile-input">
+                        <input type="text" class="profile-input bio-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label for="">Data de nascimento</label>
+                        <input type="text" class="profile-input birthdate-input">
+                    </div>
+                    <div>
+                        <label for="">Bio</label>
+                        <input type="text" class="profile-input bio-input">
                     </div>
                 </div>
                 <button class="form-btn">Salvar alteração</button>
@@ -265,37 +279,7 @@
             </div>
         </div>
     </section>
-    <section class="login-container hidden" id="login" hidden>
-        <div class="overlay-login"></div>
-        <form action="" class="login-form">
-            <h3 class="heading-h3">Login to Chat</h3>
-            <label for="">Email</label>
-            <input type="email" name="" class="email-input">
 
-            <label for="">Senha</label>
-            <input type="password" name="" class="password-input">
-            <button>Login</button>
-        </form>
-    </section>
-
-    <section class="sign-up-container hidden" hidden>
-        <div class=" overlay-login">
-        </div>
-        <form action="" class="sign-up-form">
-            <h3 class="heading-h3">Sign Up</h3>
-            <label for="">Nome Completo</label>
-            <input type="text" name="" class="name-sign-up">
-            <label for="">Nome de usário</label>
-            <input type="text" name="" class="username-sign-up">
-
-            <label for="">Email</label>
-            <input type="email" name="" class="email-sign-up">
-
-            <label for="">Senha</label>
-            <input type="password" name="" class="password-sign-up">
-            <button>Sign Up</button>
-        </form>
-    </section>
 </body>
 
 </html>

@@ -1,8 +1,16 @@
 import { supabase } from "../supabase";
-export const session = supabase;
 
-// if (session) {
-//   console.log("User is authenticated:", session);
-// } else {
-//   console.log("User is not authenticated");
-// }
+const redirectToLoginIfNotAuthenticated = async () => {
+  const { data, error } = await supabase.auth.getSession();
+
+  if (error || !data.session) {
+    // Redireciona para a página de login
+    window.location.href = "/login.html"; // ou a URL da sua página de login
+  }
+  if (!error || data.session) {
+    // Redireciona para a página de login
+    // window.location.href = "/"; // ou a URL da sua página de login
+  }
+};
+
+redirectToLoginIfNotAuthenticated();

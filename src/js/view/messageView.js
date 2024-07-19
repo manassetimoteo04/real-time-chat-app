@@ -17,6 +17,15 @@ class MessageView extends View {
       : this._settMarkup(data);
     return string;
   }
+  _settMessageHeader(data) {
+    const profileImg = document.querySelector(".message-img");
+    const userName = document.querySelector(".message-user-name span");
+    const href = document.querySelector(".see-profile");
+    profileImg.src = data.profile_img;
+    userName.innerHTML = data.full_name;
+    console.log(userName);
+    href.href = `#${data.auth_id}`;
+  }
   _settMarkup(data) {
     return `
     <div class="${

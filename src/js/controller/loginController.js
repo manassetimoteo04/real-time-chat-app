@@ -3,7 +3,8 @@ import { login } from "../model/services/login";
 export const loginCrontroller = async function (email, password) {
   try {
     const data = await login(email, password);
+    window.location.href = "/"; // ou a URL da sua página de login
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error("Credenciais Inválidos");
   }
 };

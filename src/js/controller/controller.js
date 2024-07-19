@@ -6,7 +6,6 @@ import suggestionView from "../view/suggestionView";
 import { loginCrontroller } from "./loginController";
 import { signUpController } from "./signUpController";
 import { getSuggestion } from "../model/getSuggestion";
-import { controlUser } from "./userController";
 import { logout } from "../model/services/logout";
 import ProfileView from "../view/userProfileView";
 import uploadImgView from "../view/uploadImgView";
@@ -20,12 +19,13 @@ import {
   getSingleConversation,
   conversationState,
   getMessages,
+  getUser2,
 } from "../model/getConversation";
 import conversationView from "../view/conversationView";
 import { channels } from "../model/utils/subscribe";
 import messageView from "../view/messageView";
 import { supabase } from "../model/supabase";
-controlUser();
+import { getProfile } from "../model/getProfile";
 let channel;
 
 const subscriber = function () {
@@ -65,17 +65,27 @@ const updateConversation = function (payload, data) {
   const userId = localStorage.getItem("user_id");
 
   if (data[0].user_id1 === userId || data[0].user_id2 === userId) {
-    alert(userId);
     conversationView.update(data[0], payload.new.conversation_id, payload.new);
   }
 };
+const helper = (data, col, user_id) => {
+  const some = data.some((d) => d?.[col] === user_id);
+  return some;
+};
 const updateMessageContainer = function (payload, data) {
-  // conversationView.render();
-  const userId = localStorage.getItem("user_id");
-  const hash = location.hash.slice(1);
+  const currentUserId = localStorage.getItem("user_id");
+  const otherUserId = location.hash.slice(1);
+  const currentIsPartOfConversation = data.some(
+    (d) => d.user_id1 === currentUserId || d.user_id2 === currentUserId
+  );
+  const otherIsPartOfConversation = data.some(
+    (d) => d.user_id1 === otherUserId || d.user_id2 === otherUserId
+  );
 
-  messageView.update(payload.new, true);
-  messageView._scrollConversationContainer();
+  if (currentIsPartOfConversation && otherIsPartOfConversation) {
+    messageView.update(payload.new, true);
+    messageView._scrollConversationContainer();
+  }
 };
 export const suggestionController = async function () {
   try {
@@ -95,6 +105,9 @@ export const messagesController = async function (id) {
   try {
     messageView._clean();
     messageView.renderSpinner();
+    const userId = location.hash.slice(1);
+    const user = await getUser2(userId);
+    messageView._settMessageHeader(user);
     const data = await getMessages(id);
     // createConversationView._handlerSendMessage(createConversationController);
     console.log(data);
@@ -117,7 +130,13 @@ const gettConversationController = async function (method) {
 // (function () {
 //   gettConversationController("render");
 // })();
+const ProfileController = async function () {
+  const data = await getProfile(localStorage.getItem("user_id"));
+  ProfileView._settingMyProfileContent(data);
+};
 const init = function () {
+  ProfileController();
+  new View().bodySpinner();
   hashLogoutController();
   suggestionController();
   loginView._handleEvent(loginCrontroller);
@@ -127,13 +146,21 @@ const init = function () {
   createConversationView._handlerSendMessage(createConversationController);
   conversationView._handlingEvent(messagesController);
   gettConversationController("render");
-  // messageView.render(channels);
-  // getConversation().then((state) => {
-  //   const id = localStorage.getItem("user_id");
-  //   if (id) {
-  //     conversationView.render(state, true);
-  //   }
-  // });
+
   subscriber();
 };
 init();
+
+const checkAuthentication = async () => {
+  const { data, error } = await supabase.auth.getSession();
+  if (error || !data.session) {
+    // Redireciona para a página de login apenas se não estiver já na página de login
+    if (window.location.pathname !== "/login.html") {
+      window.location.href = "/login.html"; // URL da sua página de login
+    }
+  } else {
+    // Iniciar o aplicativo apenas se o usuário estiver autenticado
+    // init();
+  }
+};
+checkAuthentication();

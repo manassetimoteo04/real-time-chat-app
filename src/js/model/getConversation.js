@@ -62,7 +62,7 @@ export async function getMessages(id) {
   return data;
 }
 
-async function getUser2(id1, id2) {
+export async function getUser2(id1, id2) {
   const id = localStorage.getItem("user_id");
   if (!id) {
     console.error("User ID is not available in localStorage");

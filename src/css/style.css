@@ -878,6 +878,25 @@ label {
     height: 100%;
     background-color: var(--color-bg-grey);
     z-index: 99999;
+    overflow: auto;
+}
+
+.login-container form .tag-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.tag-form span {
+    font-weight: 600;
+    color: rgb(108, 108, 255);
+    cursor: pointer;
+}
+
+.tag-form span:hover {
+    color: rgb(25, 25, 252);
+
 }
 
 .login-form {
@@ -924,16 +943,6 @@ label {
     font-size: inherit;
 }
 
-/*  */
-.sign-up-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-bg-grey);
-    z-index: 99999999999999;
-}
 
 .sign-up-form {
     max-width: 40rem;
@@ -981,6 +990,14 @@ label {
 
 /* SPINNER */
 
+.hidden {
+    display: none !important;
+}
+
+#spinner {
+    z-index: 99999999999999999999999999999;
+
+}
 
 .spinner-container {
     display: flex;
@@ -993,7 +1010,7 @@ label {
     height: 100%;
     background: rgb(255, 255, 255);
     z-index: 1000;
-    z-index: 99999999999999999999999;
+    z-index: 999;
 }
 
 .spinner {

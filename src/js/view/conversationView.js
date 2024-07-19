@@ -1,17 +1,19 @@
 import View from "./View";
 import { formatDates } from "./formatDates";
 class conversationView extends View {
+  myId = localStorage.getItem("user_id");
   parentElement = document.querySelector(".messages-list-container");
   constructor() {
     super();
   }
   _handlingEvent(handler) {
-    this.parentElement.addEventListener("click", (e) => {
+    this.parentElement?.addEventListener("click", (e) => {
       const target = e.target.closest(".message-box");
       if (!target) return;
       const id = target.dataset.id;
       const userId = target.dataset.user;
       location.hash = userId;
+
       handler(id);
     });
   }
@@ -42,6 +44,7 @@ class conversationView extends View {
   }
   _settMarkup(data, id, New) {
     feather.replace();
+    console.log(data);
     return `
     <div class="message-box ${id}" data-id="${data.id}" data-user="${
       data.user.auth_id
@@ -58,10 +61,12 @@ class conversationView extends View {
         </div>
         <div>
             <span class="last-message">${
-              New?.content ||
-              data.message.slice(-1)[0]?.content ||
-              "mensagem indisponível"
-            }</span>
+              data.message.slice(-1)[0].sender_id === this.myId ? "Eu: " : ""
+            } ${
+      New?.content ||
+      data.message.slice(-1)[0]?.content ||
+      "mensagem indisponível"
+    }</span>
         </div>
               </div>
 
