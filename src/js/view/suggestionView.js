@@ -1,4 +1,4 @@
-import img from "url:../../img/admin.png";
+import img from "url:../../img/me.png";
 import View from "./View";
 class SuggestionView extends View {
   parentElement = document.querySelector(".suggestion-list");
