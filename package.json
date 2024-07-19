@@ -4,7 +4,8 @@
   "description": "Building real time chat app",
   "main": "./src/controller/controller.js",
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "",
   "license": "ISC",
