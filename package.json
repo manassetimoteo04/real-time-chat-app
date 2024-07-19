@@ -2,7 +2,7 @@
   "name": "real-time-chat-app",
   "version": "1.0.0",
   "description": "Building real time chat app",
-  "main": "./src/controller/controller.js",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
