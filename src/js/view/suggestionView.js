@@ -1,5 +1,7 @@
 import img from "url:../../img/me.jpg";
 import View from "./View";
+
+// Class principal para sugestões de amigos
 class SuggestionView extends View {
   parentElement = document.querySelector(".suggestion-list");
   _sectionContainer = document.querySelector(".friend-suggestion-container");
@@ -10,6 +12,7 @@ class SuggestionView extends View {
       this._toggleContainer.bind(this)
     );
   }
+  // Função para fechar container de Suggestion
   _toggleContainer(e) {
     const target = e.target;
     if (
@@ -17,17 +20,19 @@ class SuggestionView extends View {
       target.closest(".btn-close-suggestion")
     ) {
       window.location.hash = "";
+      history.pushState(null, "", "/");
       this._sectionContainer.classList.toggle("hidden");
     }
   }
+  // Lidando com o event de Hash
   _handlingHashEvent(handler) {
-    this.parentElement.addEventListener("click", (e) => {
+    this.parentElement?.addEventListener("click", (e) => {
       const target = e.target.closest(".sendMessage");
       if (!target) return;
       const send = target.closest(".suggested-box");
-      // if () alert();
     });
   }
+
   generateMarkup(data) {
     const string = data.map((d) => this._settMarkup(d)).join("");
     return string;
@@ -47,9 +52,9 @@ class SuggestionView extends View {
         </div>
     </div>
     <div class="suggested-action">
-        <a href="/userprofile#${
+        <a href="#${
           data.auth_id
-        }" class="profile-link"><i data-feather="user"></i></a>
+        }" class="profile-link" data-path="/userprofile"><i data-feather="user"></i></a>
         <a href="#${
           data.auth_id
         }" class="profile-link sendMessage" data-path="/messages"><i data-feather="message-square"></i></a>

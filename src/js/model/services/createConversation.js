@@ -1,5 +1,7 @@
 import { supabase } from "../supabase";
-const helper = (data, userid1, userId2) => {
+
+// Helper para analisar se já exite conversa entre os dois usuários e retornar a conversa
+export const helper = (data, userid1, userId2) => {
   return data.find(
     (d) =>
       (d.user_id1 === userid1 && d.user_id2 === userId2) ||
@@ -7,19 +9,24 @@ const helper = (data, userid1, userId2) => {
   );
 };
 
-// helper([{ id: 1 }, { id: 1 }], "id");
+// Função para criar conversa nova
 export async function createConversation(userid1, userId2, message) {
   let { data: conversations, error } = await supabase
     .from("conversations")
     .select("*");
+
   const existingConversation = helper(conversations, userid1, userId2);
 
+  // Analisando se já existe uma conversa entre os dois usários
   if (existingConversation) {
     console.log("Conversation already exists between these users.");
+    // Enviando a mensagem a conversa actual
     message && sendMessage(userid1, message, existingConversation.id);
+
+    // Retornando imediatamente para não criar uma nova conversa
     return;
   }
-
+  // Criando uma nova conversa
   const { data, error: err } = await supabase
     .from("conversations")
     .upsert({
@@ -31,16 +38,19 @@ export async function createConversation(userid1, userId2, message) {
     .select();
 
   if (err) throw new Error(error.message);
+  // Enviando a mensagem na conversa criada
   message && sendMessage(userid1, message, data[0].id);
   return data;
 }
 
+// Função para enviar mensagem
 async function sendMessage(userid1, message, id) {
   const { data: data2, error: err } = await supabase
     .from("messages")
     .insert([{ sender_id: userid1, content: message, conversation_id: id }])
     .select();
   if (err) throw new Error(err.message);
+  // Função para actualizar a conversa com a ultima data da mensagem recente
   updadeTime(data2[0].created_at, id);
 }
 

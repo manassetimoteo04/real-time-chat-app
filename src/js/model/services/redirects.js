@@ -1,5 +1,6 @@
 import { supabase } from "../supabase";
 
+//
 const redirectToLoginIfNotAuthenticated = async () => {
   const { data, error } = await supabase.auth.getSession();
 

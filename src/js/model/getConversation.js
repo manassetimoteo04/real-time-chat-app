@@ -1,13 +1,14 @@
+import { helper } from "./services/createConversation";
 import { supabase } from "./supabase";
 export const conversationState = [];
-
+// Função para pegar as conversas que o usuário logado pertence
 export async function getConversation() {
   const id = localStorage.getItem("user_id");
   if (!id) {
     console.error("ID do usuário não disponível no localtsorage");
     return;
   }
-
+  // Filtrando as conversas que o usuário logado pertence
   const { data: conversations, error } = await supabase
     .from("conversations")
     .select()
@@ -30,13 +31,17 @@ export async function getConversation() {
     ...(conversations || []),
     ...(conversations2 || []),
   ];
+  // Ordenando pela data
   const sorted = conversationList.sort(
     (a, b) => new Date(b.last_msg) - new Date(a.last_msg)
   );
   const list = Array.from(new Set(sorted));
+
+  // Construindo o state para a conversa
   return await buildState(list);
 }
 
+// Função para pegar apenas uma conversa
 export async function getSingleConversation(id) {
   const { data, error } = await supabase
     .from("conversations")
@@ -47,10 +52,17 @@ export async function getSingleConversation(id) {
     console.error("Error fetching conversa onde o user é user_id1:", error);
   }
   const list = Array.from(new Set(data));
-  const x = Array.from(new Set(await buildState(list)));
   return await buildSingleState(list);
 }
+export const getConversationId = async function (user_id1, user_id2) {
+  let { data: conversations, error } = await supabase
+    .from("conversations")
+    .select("*");
 
+  const id = helper(conversations, user_id1, user_id2);
+  return id?.id;
+};
+// Pegando todas as mensagem que tem o Id da conversa actual
 export async function getMessages(id) {
   const { data, error } = await supabase
     .from("messages")
@@ -60,7 +72,7 @@ export async function getMessages(id) {
   if (error) throw new Error(error.message);
   return data;
 }
-
+//Função para pegar o usuário
 export async function getUser2(id1, id2) {
   const id = localStorage.getItem("user_id");
   if (!id) {
@@ -85,6 +97,7 @@ export async function getUser2(id1, id2) {
   return data[0]; // Return the single user object
 }
 
+// Função para o build state
 async function buildState(list) {
   await Promise.all(
     list.map(async (el) => {

@@ -1,5 +1,5 @@
 import View from "./View";
-
+// Class para lidar com o Upload da imagem
 class UploadImageView extends View {
   _handleUploadEvent(handler) {
     const input = document.getElementById("upload-input");

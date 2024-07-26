@@ -1,3 +1,4 @@
+// Class Principar para O Root
 class RouterView {
   constructor() {
     this.initialize();
@@ -8,10 +9,8 @@ class RouterView {
     );
   }
 
-  initialize() {
-    // Qualquer inicialização adicional
-  }
-
+  initialize() {}
+  //Lidando com os Event Listers nos links
   addNavEventListeners() {
     const body = document.querySelector("body");
     body.addEventListener("click", (e) => {
@@ -31,7 +30,7 @@ class RouterView {
     //   });
     // });
   }
-
+  // Actualizando os Content com base o Root
   updateContent(path) {
     document.querySelectorAll(".section").forEach((section) => {
       section.classList.add("hidden");

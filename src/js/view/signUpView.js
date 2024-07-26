@@ -1,3 +1,4 @@
+// Class para criar novo usuário
 class SignUpView {
   _signUpForm = document.querySelector(".sign-up-form");
   _loginForm = document.querySelector(".login-form");
@@ -9,6 +10,7 @@ class SignUpView {
       this._signUpForm.classList.add("hidden");
     });
   }
+  // Lindando com o Event de submit
   _handleEvent(handler) {
     const fullName = document.querySelector(".name-sign-up");
     const username = document.querySelector(".username-sign-up");

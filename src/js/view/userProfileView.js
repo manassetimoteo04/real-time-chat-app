@@ -1,4 +1,6 @@
 import View from "./View";
+
+// Class principal do usário logado
 class ProfileView extends View {
   _sectionContainer = document.querySelector(".my-profile-container");
   constructor() {
@@ -8,6 +10,8 @@ class ProfileView extends View {
       this._toggleContainer.bind(this)
     );
   }
+
+  // Função para fechar o container do usário
   _toggleContainer(e) {
     const target = e.target;
     if (
@@ -19,6 +23,8 @@ class ProfileView extends View {
       this._sectionContainer.classList.toggle("hidden");
     }
   }
+
+  //Adicionando o content do usário logado
   _settingMyProfileContent(data) {
     const name = data?.full_name?.split(" ");
     const img = document.querySelector(".profile-avatar img");

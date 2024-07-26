@@ -1,11 +1,14 @@
 import View from "./View";
 import { formatDates } from "./formatDates";
+
+// Class principal das Conversas
 class conversationView extends View {
   myId = localStorage.getItem("user_id");
   parentElement = document.querySelector(".messages-list-container");
   constructor() {
     super();
   }
+  // Lindando com o evento de clique em cada conversa
   _handlingEvent(handler) {
     this.parentElement?.addEventListener("click", (e) => {
       const target = e.target.closest(".message-box");
@@ -13,10 +16,11 @@ class conversationView extends View {
       const id = target.dataset.id;
       const userId = target.dataset.user;
       location.hash = userId;
-
       handler(id);
     });
   }
+
+  // Actualizando a lista de conversa com base a mudança de estado no banco de dados
   update(data, id, New) {
     // Encontre o elemento existente pelo ID correto
     const existingChild = this.parentElement.querySelector(`[data-id="${id}"]`);
@@ -33,18 +37,15 @@ class conversationView extends View {
     this.parentElement.prepend(newChild);
   }
 
-  createNodeFromString(htmlString) {
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = htmlString.trim();
-    return tempDiv.firstChild;
-  }
+  // Transformando String em Em DOM
+
+  // Função para gerar o Markup
   generateMarkup(data) {
     const string = data.map((d) => this._settMarkup(d)).join("");
     return string;
   }
   _settMarkup(data, id, New) {
     feather.replace();
-    console.log(data);
     return `
     <div class="message-box ${id}" data-id="${data.id}" data-user="${
       data.user.auth_id

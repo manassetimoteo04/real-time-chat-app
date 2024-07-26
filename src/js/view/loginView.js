@@ -1,5 +1,5 @@
 import View from "./View";
-
+// class para Inicio de Sessão
 class loginView extends View {
   buttonElement = document.querySelector(".login-form button");
   _loginForm = document.querySelector(".login-form");
@@ -12,6 +12,8 @@ class loginView extends View {
       this._signupForm.classList.remove("hidden");
     });
   }
+
+  //Lidando com o evento de Clique
   _handleEvent(handler) {
     const emailValue = document.querySelector(".email-input");
     const passwordValue = document.querySelector(".password-input");

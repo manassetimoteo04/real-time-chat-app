@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-
+// Função para dados do suário
 export async function getProfile(id) {
   const { data, error } = await supabase
     .from("users")

@@ -1,8 +1,9 @@
 import { supabase, supabaseUrl } from "../supabase";
 import { getCurrentUser } from "./login";
+// Função para o Upload de imagem no Supabase Storage
 export async function uploadImage(file) {
-  console.log(file);
   if (file) {
+    // Upload de imagem
     const { data, error } = await supabase.storage
       .from("images")
       .upload(`${file.name}-${Math.random() * 100 + 1}`, file);
@@ -10,16 +11,18 @@ export async function uploadImage(file) {
     if (error) {
       console.error("Error uploading file:", error.message);
     } else {
-      console.log("File uploaded:", data);
+      // Pegando o caminho da imagem actual inserida
       const fileUrl = `${supabaseUrl}/storage/v1/object/public/images/${data.path}`;
+
+      // Actualizando o URL do User Logado
       storeImageLink(fileUrl);
-      console.log(fileUrl);
     }
   } else {
     console.log("No file selected");
   }
 }
 
+// Função para mudar o URL da imagem do usuário logado
 async function storeImageLink(url) {
   const id = localStorage.getItem("user_id");
   const { data, error } = await supabase

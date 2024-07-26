@@ -1,5 +1,5 @@
 import View from "./View";
-
+// Class para criar uma nova conversa
 class createConversationView extends View {
   _btnCreateConversation = document.querySelector(".btn-send-message");
   buttonElement = document.querySelector(".btn-send-message");
