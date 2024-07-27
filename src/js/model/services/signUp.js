@@ -12,7 +12,7 @@ export async function signUp(obj) {
   //Outras informações do usário
   const userInfo = {
     username: obj.username,
-    full_name: obj.name,
+    full_name: obj.full_name,
     birthdate: new Date(),
     address: "",
     phone: "",

@@ -1,10 +1,14 @@
+import View from "./View";
+
 // Class para criar novo usuário
-class SignUpView {
+class SignUpView extends View {
+  buttonElement = document.querySelector(".sign-up-form button");
   _signUpForm = document.querySelector(".sign-up-form");
   _loginForm = document.querySelector(".login-form");
 
   _toggleBtn = document.querySelector(".sign-up-form .toggle-login");
   constructor() {
+    super();
     this._toggleBtn?.addEventListener("click", () => {
       this._loginForm.classList.remove("hidden");
       this._signUpForm.classList.add("hidden");
@@ -19,7 +23,7 @@ class SignUpView {
     this._signUpForm?.addEventListener("submit", (e) => {
       e.preventDefault();
       const obj = {
-        fullName: fullName.value,
+        full_name: fullName.value,
         username: username.value,
         email: email.value,
         password: password.value,

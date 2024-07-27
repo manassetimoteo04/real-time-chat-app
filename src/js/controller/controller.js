@@ -165,7 +165,7 @@ const controlHashChange = async function (path, userid) {
       console.log(conId, messages);
       messageView.render(messages, true);
     } catch (error) {
-      console.error(error);
+      messageView.renderError();
     }
   }
 

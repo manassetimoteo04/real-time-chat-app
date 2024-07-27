@@ -9,7 +9,8 @@ class MessageView extends View {
   _converId = "ce2311fb-16dc-49ce-a0b7-6bc64af990fe";
   constructor() {
     super();
-    this.parentElement.scrollTop = this.parentElement.scrollHeight;
+    if (this.parentElement)
+      this.parentElement.scrollTop = this.parentElement.scrollHeight;
   }
   // Função para actualizar a lista de Conversas
   update(data, render = false) {
