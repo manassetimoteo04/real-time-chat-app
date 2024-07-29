@@ -81,10 +81,7 @@ class RouterView {
         break;
       case "/messages":
         document.body.classList.add("show");
-        document.querySelectorAll("section").forEach((section) => {
-          section.classList.add("hidden");
-          section.classList.add("hide");
-        });
+
         break;
       case "/":
       default:

@@ -133,10 +133,12 @@ aside {
     padding: 0.5rem 1rem;
     border-radius: 5rem;
     background-color: var(--color-bg-grey);
+    width: 100%;
 }
 
 .heading-h2 {
     color: var(--color-text-dark);
+    font-size: 1.8rem;
 }
 
 .search-form input {
@@ -566,6 +568,7 @@ aside {
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 999999999999;
     overflow: auto;
+    padding: 1rem;
 
 }
 
@@ -584,7 +587,6 @@ aside {
     margin: 5rem auto;
     border-radius: 1rem;
     overflow: hidden;
-
     padding: 2rem;
 }
 

@@ -57,11 +57,11 @@
     }
 
     .conversation-container {
-        position: absolute;
+        position: fixed;
         top: 0;
         right: 0;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         background-color: var(--color-bg-grey);
         padding: 0.5rem;
         transition: 0.3s ease-in-out;
@@ -125,6 +125,10 @@
 
     }
 
+    .message-box:last-child {
+        margin-bottom: 7rem;
+    }
+
     .suggestion-container {
         background-color: var(--color-light);
         padding: 2rem;
@@ -134,13 +138,48 @@
         min-height: initial;
         max-height: initial;
         height: 100vh;
+        overflow: hidden;
+    }
+
+    .btn-close-suggestion {
+        display: none;
     }
 
     .suggestion-list {
-        overflow: auto;
+        overflow: scroll;
+    }
+
+    .my-profile-container {
+        position: initial;
+        z-index: 1;
+        background: none;
+        padding: 0;
+    }
+
+    .profile-information-container {
+        margin: 0;
     }
 
     .hide {
         display: none !important;
+    }
+
+    .form-group {
+
+        gap: 3rem;
+    }
+
+    .profile-information-container form:last-child {
+        margin-bottom: 7rem;
+    }
+
+    .btn-close-profile {
+        display: none;
+    }
+}
+
+@media (max-width: 30.8125em) {
+    .form-group {
+        flex-direction: column;
     }
 }
