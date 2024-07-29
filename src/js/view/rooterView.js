@@ -50,7 +50,7 @@ class RouterView {
           .classList.remove("hidden", "hide");
         break;
       case "/suggestions":
-        document.querySelectorAll(".section").forEach((section) => {
+        document.querySelectorAll("section").forEach((section) => {
           section.classList.add("hide");
         });
         document.querySelector(".messages-container").classList.add("hide");
@@ -59,14 +59,14 @@ class RouterView {
           .classList.remove("hidden", "hide");
         break;
       case "/profile":
-        document.querySelectorAll(".section").forEach((section) => {
+        document.querySelectorAll("section").forEach((section) => {
           section.classList.add("hide");
         });
         document.querySelector(".messages-container").classList.add("hide");
         document.getElementById("profile").classList.remove("hidden", "hide");
         break;
       case "/userprofile":
-        document.querySelectorAll(".section").forEach((section) => {
+        document.querySelectorAll("section").forEach((section) => {
           section.classList.add("hide");
         });
         document
@@ -74,10 +74,17 @@ class RouterView {
           .classList.remove("hidden", "hide");
         break;
       case "/conversation":
-        document.querySelectorAll(".section").forEach((section) => {
+        document.querySelectorAll("section").forEach((section) => {
           section.classList.add("hide");
         });
         document.getElementById("conversation").classList.remove("hide");
+        break;
+      case "/messages":
+        document.body.classList.add("show");
+        document.querySelectorAll("section").forEach((section) => {
+          section.classList.add("hidden");
+          section.classList.add("hide");
+        });
         break;
       case "/":
       default:

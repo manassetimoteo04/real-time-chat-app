@@ -15,7 +15,7 @@ class MessageView extends View {
     this._hideMobileMessages();
   }
   _hideMobileMessages() {
-    this.backToListBtn.addEventListener("click", () =>
+    this.backToListBtn?.addEventListener("click", () =>
       document.body.classList.remove("show")
     );
   }
