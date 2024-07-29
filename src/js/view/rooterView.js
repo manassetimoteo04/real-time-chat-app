@@ -36,28 +36,48 @@ class RouterView {
       section.classList.add("hidden");
       section.classList.add("hide");
     });
-    document.querySelector(".conversation-container").classList.add("hide");
+
     console.log(document.querySelector(".conversation-container"));
 
     switch (path) {
       case "/notification":
+        document.querySelectorAll(".section").forEach((section) => {
+          section.classList.add("hide");
+        });
+        document.querySelector(".messages-container").classList.add("hide");
         document
           .getElementById("notification")
           .classList.remove("hidden", "hide");
         break;
       case "/suggestions":
-        document.getElementById("suggestions").classList.remove("hidden");
+        document.querySelectorAll(".section").forEach((section) => {
+          section.classList.add("hide");
+        });
+        document.querySelector(".messages-container").classList.add("hide");
+        document
+          .getElementById("suggestions")
+          .classList.remove("hidden", "hide");
         break;
       case "/profile":
+        document.querySelectorAll(".section").forEach((section) => {
+          section.classList.add("hide");
+        });
+        document.querySelector(".messages-container").classList.add("hide");
         document.getElementById("profile").classList.remove("hidden", "hide");
         break;
       case "/userprofile":
+        document.querySelectorAll(".section").forEach((section) => {
+          section.classList.add("hide");
+        });
         document
           .getElementById("userprofile")
           .classList.remove("hidden", "hide");
         break;
       case "/conversation":
-        document.getElementById("conversation").classList.add("hidden", "hide");
+        document.querySelectorAll(".section").forEach((section) => {
+          section.classList.add("hide");
+        });
+        document.getElementById("conversation").classList.remove("hide");
         break;
       case "/":
       default:
