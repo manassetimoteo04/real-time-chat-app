@@ -5,12 +5,19 @@ import { formatDates } from "./formatDates";
 // Class das mensagens
 class MessageView extends View {
   id = localStorage.getItem("user_id");
+  backToListBtn = document.querySelector(".btn-back-to-list");
   parentElement = document.querySelector(".conversation-box");
   _converId = "ce2311fb-16dc-49ce-a0b7-6bc64af990fe";
   constructor() {
     super();
     if (this.parentElement)
       this.parentElement.scrollTop = this.parentElement.scrollHeight;
+    this._hideMobileMessages();
+  }
+  _hideMobileMessages() {
+    this.backToListBtn.addEventListener("click", () =>
+      document.body.classList.remove("show")
+    );
   }
   // Função para actualizar a lista de Conversas
   update(data, render = false) {

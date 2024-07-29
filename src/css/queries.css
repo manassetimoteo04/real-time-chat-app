@@ -1,0 +1,137 @@
+/* 934PX */
+/* Adicionando a cor e corrigindo o nome da variável */
+:root {
+    --color-primary: #f15f2a;
+    /* Laranja claro */
+    --color-secondary: #010018;
+    /* Preto */
+    --color-tertiary: #E0BFB7;
+    /* Bege */
+    --color-accent: #CA7F73;
+    /* Rosa claro */
+    --color-light: #FFFFFF;
+    /* Branco */
+    --color-dark: #983F34;
+    /* Vermelho escuro */
+    --color-gray-light: #dfdfdf;
+    /* Cinza claro */
+    --color-gray: #BFBFBF;
+    /* Cinza */
+    --color-gray-dark: #BEC1C2;
+    /* Cinza médio */
+    --color-rose-dark: #AE7F7A;
+    /* Rosa escuro */
+    --color-bg-grey: #f5f4f4;
+    /* Corrigido o nome da variável */
+    --color-text: #676767;
+    --color-text-dark: #010101;
+}
+
+@media (max-width: 58.375em) {
+    body {
+        grid-template-columns: 7rem 1fr 1.5fr;
+
+    }
+}
+
+@media (max-width: 50.875em) {
+
+    html {
+        font-size: 56.25%;
+    }
+}
+
+@media (max-width: 46.875em) {
+
+    body {
+        grid-template-columns: 7rem 1fr 1.2fr;
+
+    }
+}
+
+@media (max-width: 37.6875em) {
+
+    body {
+        grid-template-columns: 7rem 1fr;
+
+    }
+
+    .conversation-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-bg-grey);
+        padding: 0.5rem;
+        transition: 0.3s ease-in-out;
+
+        transform: translateX(-1000000px);
+    }
+
+    .btn-back-to-list {
+        display: inline-block;
+    }
+
+    .show .conversation-container {
+        transform: translateX(0);
+    }
+
+}
+
+@media (max-width: 33.0625em) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    .side-bar-container {
+        position: fixed;
+        bottom: 0rem;
+        left: 0rem;
+        right: 0rem;
+        height: 7rem;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        width: 100%;
+        z-index: 9999999999999999999;
+        flex-direction: row;
+        justify-content: center;
+        gap: 3rem;
+
+    }
+
+    .main-nav-list {
+        flex-direction: row;
+        gap: 3rem;
+    }
+
+    .user-btn-box {
+        flex-direction: row;
+        display: flex;
+        gap: 3rem;
+
+    }
+
+    .main-heading-logo {
+        display: none;
+    }
+
+    .friend-suggestion-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 999999999999;
+        overflow: auto;
+
+    }
+
+    .hide {
+        display: none !important;
+        opacity: 0;
+        background-color: #010018 !important;
+        position: absolute;
+    }
+}

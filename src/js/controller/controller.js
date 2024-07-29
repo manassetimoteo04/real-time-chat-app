@@ -162,7 +162,7 @@ const controlHashChange = async function (path, userid) {
       const messages = await getMessages(conId);
       const user = await getUser2(userid);
       messageView._settMessageHeader(user);
-      console.log(conId, messages);
+      console.log(user);
       messageView.render(messages, true);
     } catch (error) {
       messageView.renderError();

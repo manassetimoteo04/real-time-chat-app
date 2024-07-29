@@ -33,8 +33,12 @@ export async function getConversation() {
   ];
   // Ordenando pela data
   const sorted = conversationList.sort(
-    (a, b) => new Date(b.last_msg) - new Date(a.last_msg)
+    (a, b) => new Date(a.last_msg) - new Date(b.last_msg)
   );
+
+  console.log("NOT: ", conversationList);
+  console.log("YES: ", sorted);
+
   const list = Array.from(new Set(sorted));
 
   // Construindo o state para a conversa

@@ -87,7 +87,6 @@ aside {
 }
 
 .user-btn {
-    background-color: #bfbfbf41;
     color: var(--color-light);
     width: 4rem;
     height: 4rem;
@@ -95,6 +94,12 @@ aside {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.user-btn:hover {
+    background-color: #bfbfbf41;
+
 }
 
 .messages-container {
@@ -196,8 +201,8 @@ aside {
 }
 
 .img-box {
-    width: 5rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -211,7 +216,7 @@ aside {
 .message-box {
     display: grid;
     align-items: center;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: 3rem 1fr;
     gap: 1rem;
     padding: 2rem;
 }
@@ -237,12 +242,11 @@ aside {
 }
 
 .message-user-name {
-    font-weight: 600;
     color: var(--color-text-dark);
 }
 
 .message-date {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 500;
     color: var(--color-rose-dark);
 }
@@ -263,6 +267,8 @@ aside {
     height: 100%;
     gap: 0.5rem;
     overflow-y: scroll;
+    position: relative;
+
 }
 
 .conversation-container::-webkit-scrollbar {
@@ -282,6 +288,10 @@ aside {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.btn-back-to-list {
+    display: none;
 }
 
 .conversation-user-box div {
@@ -305,7 +315,6 @@ aside {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    position: relative;
     overflow-y: scroll;
 }
 
@@ -383,28 +392,9 @@ aside {
 .conversation-user-setts div a:nth-child(1) {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-    cursor: pointer;
-
-}
-
-.conversation-user-setts div a:nth-child(2) {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    width: 4rem;
-    height: 4rem;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: inset 0 0 0 1px var(--color-gray-light);
-    color: var(--color-secondary);
+    color: inherit;
 
 }
 

@@ -17,6 +17,7 @@ class conversationView extends View {
       const userId = target.dataset.user;
       location.hash = userId;
       handler(id);
+      document.body.classList.add("show");
     });
   }
 

@@ -34,23 +34,30 @@ class RouterView {
   updateContent(path) {
     document.querySelectorAll(".section").forEach((section) => {
       section.classList.add("hidden");
+      section.classList.add("hide");
     });
+    document.querySelector(".conversation-container").classList.add("hide");
+    console.log(document.querySelector(".conversation-container"));
 
     switch (path) {
       case "/notification":
-        document.getElementById("notification").classList.remove("hidden");
+        document
+          .getElementById("notification")
+          .classList.remove("hidden", "hide");
         break;
       case "/suggestions":
         document.getElementById("suggestions").classList.remove("hidden");
         break;
       case "/profile":
-        document.getElementById("profile").classList.remove("hidden");
+        document.getElementById("profile").classList.remove("hidden", "hide");
         break;
       case "/userprofile":
-        document.getElementById("userprofile").classList.remove("hidden");
+        document
+          .getElementById("userprofile")
+          .classList.remove("hidden", "hide");
         break;
-      case "/messages":
-        document.getElementById("suggestions").classList.add("hidden");
+      case "/conversation":
+        document.getElementById("conversation").classList.add("hidden", "hide");
         break;
       case "/":
       default:

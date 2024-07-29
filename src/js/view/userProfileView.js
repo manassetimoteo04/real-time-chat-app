@@ -38,11 +38,12 @@ class ProfileView extends View {
 
     img.src = data.profile_img;
     fullName.textContent = data.full_name;
-    username.textContent = data.auth_id;
+    username.textContent = data.username;
     firstNameInput.value = name[0];
     lastNameInput.value = name[1];
     userNameInput.value = data.username;
     bioInput.value = data.bio;
   }
+  updateProfile(handler) {}
 }
 export default new ProfileView();

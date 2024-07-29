@@ -11,6 +11,7 @@ class createConversationView extends View {
       e.preventDefault();
 
       handler(input.value);
+      input.value = "";
     });
   }
 }
