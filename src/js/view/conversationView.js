@@ -83,8 +83,20 @@ class conversationView extends View {
     const string = data.map((d) => this._settMarkup(d)).join("");
     return string;
   }
+  _cutMsg(New, data) {
+    const msg =
+      New?.content ||
+      data.message.slice(-1)[0]?.content ||
+      "mensagem indisponível";
+    const cutted = msg.length > 30 ? msg.slice(0, 30) + " ..." : msg;
+    return cutted;
+  }
+  _cutName(data) {
+    return data.user.full_name.length > 25
+      ? data.user.full_name.slice(0, 25) + " ..."
+      : data.user.full_name;
+  }
   _settMarkup(data, id, New) {
-    feather.replace();
     return `
     <div class="message-box ${id}" data-id="${data.id}" data-user="${
       data.user.auth_id
@@ -94,7 +106,7 @@ class conversationView extends View {
               </div>
               <div class="message-content-box">
         <div>
-            <span class="message-user-name">${data.user.full_name}</span>
+            <span class="message-user-name">${this._cutName(data)}</span>
             <span class="message-date">${formatDates(
               new Date(New?.created_at || data.last_msg || new Date())
             )}</span>
@@ -102,11 +114,7 @@ class conversationView extends View {
         <div>
             <span class="last-message">${
               data.message.slice(-1)[0].sender_id === this.myId ? "Eu: " : ""
-            } ${
-      New?.content ||
-      data.message.slice(-1)[0]?.content ||
-      "mensagem indisponível"
-    }</span>
+            } ${this._cutMsg(New, data)}</span>
         </div>
               </div>
 
