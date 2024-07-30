@@ -84,7 +84,7 @@ class ProfileView extends View {
   _hidePopup() {
     const btn = document.querySelector(".close-popup");
     const popup = document.querySelector(".success-change-popup ");
-    btn.addEventListener("click", () => popup.classList.add("hidden"));
+    btn?.addEventListener("click", () => popup.classList.add("hidden"));
   }
 }
 export default new ProfileView();
