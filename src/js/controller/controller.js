@@ -29,6 +29,8 @@ import { supabase } from "../model/supabase";
 import { getProfile } from "../model/getProfile";
 import hashView from "../view/hashView";
 import friendProfileView from "../view/friendProfileView";
+import userProfileView from "../view/userProfileView";
+import { updateProfile } from "../model/services/updateProfile";
 let channel;
 
 // Função para controlar com o real time change
@@ -190,6 +192,17 @@ const logoutController = async function () {
   await logout();
 };
 
+const updateProfileControler = async function (obj) {
+  try {
+    ProfileView.buttonSpinner();
+    const data = await updateProfile(obj);
+    ProfileView._settingMyProfileContent(data[0]);
+    ProfileView.removeButtonSpinner();
+    ProfileView._showChangePopup();
+  } catch (error) {
+    console.error(error.message);
+  }
+};
 const init = function () {
   ProfileController();
   conversationView.bodySpinner();
@@ -205,5 +218,6 @@ const init = function () {
   subscriber();
   checkAuthentication();
   hashView._handlingHashEvent(controlHashChange);
+  userProfileView.updateProfile(updateProfileControler);
 };
 init();

@@ -210,15 +210,22 @@
 
                 <div class="form-group">
                     <div>
-                        <label for="">Data de nascimento</label>
-                        <input type="text" class="profile-input birthdate-input">
+                        <label for="">Residência</label>
+                        <input type="text" class="profile-input address-input">
                     </div>
                     <div>
                         <label for="">Telefone</label>
                         <input type="text" class="profile-input phone-input">
                     </div>
                 </div>
-                <button class="form-btn">Salvar alteração</button>
+                <div class="form-group">
+                    <div>
+                        <label for="">Data de nascimento</label>
+                        <input type="date" class="profile-input birthdate-input">
+                    </div>
+
+                </div>
+                <button class="form-btn update-profile">Salvar alteração</button>
             </form>
 
             <span class="profile-tag">Alterar Senha</span>
@@ -299,6 +306,14 @@
                 <button class="btn-logout">Terminar</button>
             </div>
 
+        </div>
+    </div>
+    <div class="success-change-popup hidden">
+        <div class="popup">
+            <span class="icon"><i data-feather="check-square"></i></span>
+
+            <span class="text">Alterações feitas com sucesso</span>
+            <button class="close-popup">Obrigado!</button>
         </div>
     </div>
 
