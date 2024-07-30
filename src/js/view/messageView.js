@@ -8,6 +8,7 @@ class MessageView extends View {
   backToListBtn = document.querySelector(".btn-back-to-list");
   parentElement = document.querySelector(".conversation-box");
   _converId = "ce2311fb-16dc-49ce-a0b7-6bc64af990fe";
+  _lastDate = "";
   constructor() {
     super();
     if (this.parentElement)
@@ -43,12 +44,41 @@ class MessageView extends View {
     console.log(userName);
     href.href = `#${data.auth_id}`;
   }
+  _groupingMessagesDate(data) {
+    let formated = "";
+    const date = new Date(data.created_at);
+    const now = new Date().getDate();
+    const day = date.getDate();
+    if (now % day === 0) formated = "Hoje";
+    if (now % day === 1) formated = "Ontem";
+    if (now % day > 1)
+      formated = new Date(data.created_at).toLocaleDateString("pt-AO", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+
+    const dateString =
+      day !== this._lastDate
+        ? `<span class="curr-date">${formated}</span>`
+        : "";
+    this._lastDate !== day
+      ? (this._lastDate = day)
+      : (this._lastDate = this._lastDate);
+
+    return dateString;
+  }
+  _settMessageTime(data) {
+    const date = new Date(data.created_at).toLocaleTimeString();
+    return date.slice(0, -3);
+  }
   _settMarkup(data) {
     return `
+        ${this._groupingMessagesDate(data)}
     <div class="${
       data.sender_id === this.id ? "sent-message" : "received-message"
     }"><span class="text-message">${data.content}</span>
-     <span class="message-time">${formatDates(data.created_at)}</span>
+     <span class="message-time">${this._settMessageTime(data)}</span>
      </div>
     `;
   }

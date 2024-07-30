@@ -119,7 +119,9 @@ export const messagesController = async function (id) {
     const data = await getMessages(id);
     messageView.render(data, true);
     messageView._scrollConversationContainer();
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 };
 const gettConversationController = async function (method) {
   method === "render" && conversationView.renderSpinner();
@@ -165,6 +167,7 @@ const controlHashChange = async function (path, userid) {
       console.log(user);
       messageView.render(messages, true);
     } catch (error) {
+      console.error(error);
       messageView.renderError();
     }
   }
