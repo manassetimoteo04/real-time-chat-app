@@ -38,8 +38,8 @@ class FriendProfileView extends View {
            <div class="user-img-box"><img src="${data.profile_img}" alt=""></div>
 
        <div class="user-content-box">
-           <span class="user-profile-name">${data.full_name}"</span>
-           <span class="profile-username">${data.username}"</span>
+           <span class="user-profile-name">${data.full_name}</span>
+           <span class="profile-username">${data.username}</span>
        </div>
        <div class="user-contacts-buttons">
            <a href="#${data.auth_id}" class="send-user-message" data-path="/messages">Conversar <i
@@ -50,16 +50,16 @@ class FriendProfileView extends View {
        <div class="information-container">
            <span class="container-tag">Informações Pessoais</span>
            <div class="information-box"><span class="label"><i data-feather="mail"></i> Email</span> <span
-         class="infor-text">${data.email}"</span></div>
+         class="infor-text">${data.email}</span></div>
            <div class="information-box"><span class="label"><i data-feather="calendar"></i> Data de
          nascimento</span>
-     <span class="infor-text">${data.birthdate}"</span>
+     <span class="infor-text">${data.birthdate}</span>
            </div>
 
            <div class="information-box"><span class="label"><i data-feather="phone"></i> Telefone</span> <span
-         class="infor-text">${data.phone}"</span></div>
+         class="infor-text">${data.phone}</span></div>
            <div class="information-box"><span class="label"><i data-feather="map-pin"></i> Endereço de
-         Residência</span> <span class="infor-text">${data.address}"</span></div>
+         Residência</span> <span class="infor-text">${data.address}</span></div>
        </div>
     `;
   }
