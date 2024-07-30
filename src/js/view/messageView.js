@@ -10,6 +10,7 @@ class MessageView extends View {
   _overlay = document.querySelector(".new-chat-overlay");
   _converId = "ce2311fb-16dc-49ce-a0b7-6bc64af990fe";
   _lastDate = "";
+
   constructor() {
     super();
     if (this.parentElement)
@@ -50,25 +51,31 @@ class MessageView extends View {
     href.href = `#${data.auth_id}`;
   }
   _groupingMessagesDate(data) {
+    // Formata a data para exibição
     let formated = new Date(data.created_at).toLocaleDateString("pt-AO", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
     const date = new Date(data.created_at);
-    const now = new Date().getDate();
+    const now = new Date();
     const day = date.getDate();
-    if (now % day === 0) formated = "Hoje";
-    if (now % day === 1) formated = "Ontem";
-    // if (now % day > 1)
 
+    // Verifica se a mensagem foi enviada "Hoje" ou "Ontem"
+    const isToday = now.toDateString() === date.toDateString();
+    const isYesterday =
+      new Date(now.setDate(now.getDate() - 1)).toDateString() ===
+      date.toDateString();
+
+    if (isToday) formated = "Hoje";
+    if (isYesterday) formated = "Ontem";
+
+    // Verifica se deve exibir a data
     const dateString =
       day !== this._lastDate
         ? `<span class="curr-date">${formated}</span>`
         : "";
-    this._lastDate !== day
-      ? (this._lastDate = day)
-      : (this._lastDate = this._lastDate);
+    this._lastDate = day;
 
     return dateString;
   }

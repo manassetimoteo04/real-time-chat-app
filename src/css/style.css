@@ -423,27 +423,34 @@ aside {
     cursor: pointer;
     color: inherit;
 
+
 }
 
 .send-message-box {
     background: none;
-    display: flex;
+    display: grid;
     padding: 0;
+    grid-template-columns: 1fr 5rem;
+    background-color: var(--color-light);
+    align-items: center;
+
+
 }
 
 .send-message-box form {
     width: 100%;
     display: grid;
-    grid-template-columns: 5.5rem 1fr 5rem;
+    grid-template-columns: 2rem 1fr;
     height: 100%;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    background-color: var(--color-light);
+    padding: 0 1rem;
 
 
 }
 
 .send-message-box form input,
 .send-message-box span {
-    background-color: var(--color-light);
     width: 100%;
     height: 100%;
     display: flex;
@@ -453,15 +460,40 @@ aside {
     border-radius: 0.5rem;
 }
 
+.send-message-box form input {
+    background-color: var(--color-light);
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
 .send-message-box input:focus {
     outline: none;
 }
 
 .btn-send-message {
-    background-color: var(--color-primary);
-    border-radius: 0.5rem;
+    border-radius: 50%;
     color: var(--color-light);
     margin-left: 0.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: none;
+}
+
+.btn-send-message:hover {
+    background-color: var(--color-bg-grey);
+}
+
+.btn-enabled {
+    color: var(--color-primary);
+    background: none;
+    display: flex;
+
 }
 
 .btn-send-message svg {
