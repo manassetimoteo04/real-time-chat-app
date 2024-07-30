@@ -75,12 +75,21 @@ aside {
     gap: 2rem;
 }
 
-.main-nav-list li:hover svg {
-    color: var(--color-primary);
+.main-nav-list li:hover a {
+    background-color: #bfbfbf41;
+
 }
 
 .main-nav-list li a {
+    padding: 1rem;
+    width: 4rem;
+    height: 4rem;
     color: var(--color-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .main-heading-logo svg {
@@ -97,6 +106,7 @@ aside {
     align-items: center;
     justify-content: center;
     margin-bottom: 0.5rem;
+
 }
 
 .user-btn:hover {
@@ -1231,4 +1241,82 @@ form button {
     background-color: var(--color-primary) !important;
     color: var(--color-light) !important;
     position: relative;
+}
+
+
+/* SKELETON LOADING */
+.conversation-skeleton {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-light);
+    gap: 3rem;
+    padding: 2rem;
+}
+
+.conversation-skeleton .box {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1rem;
+    align-items: center;
+
+}
+
+.conversation-skeleton .circle {
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--color-bg-grey);
+    border-radius: 50%;
+    animation: animation 1s linear infinite;
+
+}
+
+.conversation-skeleton .squared {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.squared .long-sk {
+    background-color: var(--color-bg-grey);
+    width: 100%;
+    height: 1rem;
+    border-radius: 5rem;
+    animation: animation 2s linear infinite;
+
+}
+
+.squared .short-sk {
+    background-color: var(--color-bg-grey);
+    width: 60%;
+    height: 1rem;
+    border-radius: 5rem;
+    animation: animation 3s linear infinite;
+
+}
+
+@keyframes animation {
+    0% {
+        background-color: #edede9b9;
+    }
+
+    30% {
+        background-color: #edede9d2;
+    }
+
+    60% {
+        background-color: #edede9b9;
+    }
+
+    70% {
+        background-color: #dedbd2b9;
+    }
+
+    70% {
+        background-color: #edede9b9;
+    }
+
+    100% {
+        background-color: #e3d5caaf;
+    }
+
 }

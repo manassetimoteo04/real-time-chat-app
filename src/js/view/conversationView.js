@@ -36,7 +36,46 @@ class conversationView extends View {
     // Adicione o novo elemento no topo da lista
     this.parentElement.prepend(newChild);
   }
+  renderSpinner() {
+    if (!this.parentElement) return;
 
+    const markup = `
+  <div class="conversation-skeleton">
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+        </div>`;
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
+  }
   // Transformando String em Em DOM
 
   // Função para gerar o Markup
