@@ -179,6 +179,36 @@
     .btn-close-profile {
         display: none;
     }
+
+    .close-user-profile {
+        display: none;
+    }
+
+
+    .user-profile-container {
+        background-color: var(--color-bg-grey);
+
+    }
+
+    .user-profile-box {
+        background-color: var(--color-light);
+        padding: 2rem;
+        max-width: initial;
+        margin: initial;
+        border-radius: 1rem;
+        display: grid;
+        overflow: hidden;
+        position: relative;
+        min-height: initial;
+    }
+
+    .back-profile {
+        display: inline-block;
+    }
+
+    .user-profile-header {
+        justify-content: left;
+    }
 }
 
 @media (max-width: 30.8125em) {

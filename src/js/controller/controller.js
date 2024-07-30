@@ -153,25 +153,31 @@ const checkAuthentication = async () => {
     // init();
   }
 };
-const controlHashChange = async function (path, userid) {
-  console.log(path);
-  if ((path === "/" && userid) || (path === "/messages" && userid)) {
-    try {
-      const id = localStorage.getItem("user_id");
-      const conId = await getConversationId(id, userid);
-      messageView.renderSpinner();
-      if (!conId) return messageView.render([], true);
-      const messages = await getMessages(conId);
-      const user = await getUser2(userid);
-      messageView._settMessageHeader(user);
-      console.log(user);
-      messageView.render(messages, true);
-    } catch (error) {
-      console.error(error);
-      messageView.renderError();
-    }
-  }
+const _settMessages = async function (userid) {
+  try {
+    const id = localStorage.getItem("user_id");
+    messageView.renderSpinner();
+    const user = await getUser2(userid);
 
+    messageView._settMessageHeader(user);
+    const conId = await getConversationId(id, userid);
+    if (!conId) return messageView.render([], true);
+
+    const messages = await getMessages(conId);
+    messageView.render(messages, true);
+  } catch (error) {
+    console.error(error);
+    messageView.renderError();
+  }
+};
+
+const controlHashChange = async function (path, userid) {
+  if ((path === "/" && userid) || (path === "/messages" && userid)) {
+    _settMessages(userid);
+  }
+  if (path === "/messages" && userid) {
+    _settMessages(userid);
+  }
   if (path === "/userprofile" && userid) {
     friendProfileView.renderSpinner();
     const user = await getUser2(userid);

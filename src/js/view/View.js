@@ -41,7 +41,9 @@ export default class View {
 
     const markup = this.generateMarkup(data);
     this._clean();
+
     this.parentElement.insertAdjacentHTML("beforeend", markup);
+    feather.replace();
   }
   // função principal para actualizar os dados
   update(data, render = false) {

@@ -2,13 +2,15 @@ import View from "./View";
 
 class FriendProfileView extends View {
   _sectionContainer = document.querySelector(".user-profile-container ");
-  parentElement = document.querySelector(".user-profile-box");
+  parentElement = document.querySelector(".parentElement");
+  _backBtn = document.querySelector(".back-profile");
   constructor() {
     super();
     this._sectionContainer?.addEventListener(
       "click",
       this._toggleContainer.bind(this)
     );
+    this._hideSectionContainer();
   }
 
   // Função para fechar o container do usário
@@ -18,21 +20,22 @@ class FriendProfileView extends View {
       target.closest(".overlay-user-profile") ||
       target.closest(".close-user-profile")
     ) {
-      window.location.hash = "";
-      history.pushState(null, "", "/");
+      const hash = location.hash;
+      history.pushState(null, "", "/messages");
+      location.hash = hash;
       this._sectionContainer.classList.toggle("hidden");
     }
+  }
+  _hideSectionContainer() {
+    this._backBtn?.addEventListener("click", () =>
+      this._sectionContainer.classList.toggle("hide")
+    );
   }
   generateMarkup(data) {
     feather.replace();
 
     return `
-    <div class="user-profile-header">
-           <span class="block-user"><i data-feather="lock"></i></span>
-           <span class="close-user-profile"><i data-feather="x"></i></span>
-
-       </div>
-       <div class="user-img-box"><img src="${data.profile_img}" alt=""></div>
+           <div class="user-img-box"><img src="${data.profile_img}" alt=""></div>
 
        <div class="user-content-box">
            <span class="user-profile-name">${data.full_name}"</span>

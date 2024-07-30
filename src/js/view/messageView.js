@@ -45,18 +45,17 @@ class MessageView extends View {
     href.href = `#${data.auth_id}`;
   }
   _groupingMessagesDate(data) {
-    let formated = "";
+    let formated = new Date(data.created_at).toLocaleDateString("pt-AO", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
     const date = new Date(data.created_at);
     const now = new Date().getDate();
     const day = date.getDate();
     if (now % day === 0) formated = "Hoje";
     if (now % day === 1) formated = "Ontem";
-    if (now % day > 1)
-      formated = new Date(data.created_at).toLocaleDateString("pt-AO", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
+    // if (now % day > 1)
 
     const dateString =
       day !== this._lastDate

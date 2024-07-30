@@ -66,9 +66,6 @@ class RouterView {
         document.getElementById("profile").classList.remove("hidden", "hide");
         break;
       case "/userprofile":
-        document.querySelectorAll("section").forEach((section) => {
-          section.classList.add("hide");
-        });
         document
           .getElementById("userprofile")
           .classList.remove("hidden", "hide");
@@ -80,8 +77,8 @@ class RouterView {
         document.getElementById("conversation").classList.remove("hide");
         break;
       case "/messages":
+        document.getElementById("userprofile").classList.add("hide");
         document.body.classList.add("show");
-
         break;
       case "/":
       default:

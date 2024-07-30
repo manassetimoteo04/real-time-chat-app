@@ -720,7 +720,7 @@ label {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 999999999999;
+    z-index: 9999999999999999999999999;
     overflow: auto;
 
 }
@@ -746,6 +746,11 @@ label {
     min-height: 70rem;
 }
 
+.parentElement {
+    display: grid;
+
+}
+
 .user-img-box {
     background-color: var(--color-gray-light);
     width: 14rem;
@@ -759,15 +764,19 @@ label {
 
 .user-img-box img {
     width: 100%;
-    height: 100%;
-    border-radius: 50%;
+    height: auto;
+
 }
 
 .user-profile-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: right;
     margin-bottom: 3rem;
+}
+
+.back-profile {
+    display: none;
 }
 
 .talk-with {
