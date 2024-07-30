@@ -61,7 +61,7 @@
         top: 0;
         right: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background-color: var(--color-bg-grey);
         padding: 0.5rem;
         transition: 0.3s ease-in-out;
@@ -80,6 +80,15 @@
 
     .show .conversation-container {
         transform: translateX(0);
+    }
+
+    .send-message-box {
+        position: fixed;
+        bottom: 0rem;
+        left: 0rem;
+        width: 100%;
+        height: 4.5rem;
+        padding: 0 0.5rem;
     }
 
 }
