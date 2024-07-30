@@ -30,10 +30,9 @@ class MessageView extends View {
   }
   // Função para gerar MArkup
   generateMarkup(data) {
-    const sort = data.sort(
-      (a, b) => new Date(a.created_at) - new Date(b.created_at)
-    );
-    console.log(sort);
+    const sort = Array.isArray(data)
+      ? data.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+      : "";
 
     const string = Array.isArray(data)
       ? data.map((d) => this._settMarkup(d)).join("")
