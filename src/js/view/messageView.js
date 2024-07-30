@@ -7,6 +7,7 @@ class MessageView extends View {
   id = localStorage.getItem("user_id");
   backToListBtn = document.querySelector(".btn-back-to-list");
   parentElement = document.querySelector(".conversation-box");
+  _overlay = document.querySelector(".new-chat-overlay");
   _converId = "ce2311fb-16dc-49ce-a0b7-6bc64af990fe";
   _lastDate = "";
   constructor() {
@@ -29,6 +30,11 @@ class MessageView extends View {
   }
   // Função para gerar MArkup
   generateMarkup(data) {
+    const sort = data.sort(
+      (a, b) => new Date(a.created_at) - new Date(b.created_at)
+    );
+    console.log(sort);
+
     const string = Array.isArray(data)
       ? data.map((d) => this._settMarkup(d)).join("")
       : this._settMarkup(data);
@@ -36,12 +42,12 @@ class MessageView extends View {
   }
   // Configurar as Informações do Current User no Header
   _settMessageHeader(data) {
+    this._overlay.classList.add("hidden");
     const profileImg = document.querySelector(".message-img");
     const userName = document.querySelector(".message-user-name span");
     const href = document.querySelector(".see-profile");
     profileImg.src = data.profile_img;
     userName.innerHTML = data.full_name;
-    console.log(userName);
     href.href = `#${data.auth_id}`;
   }
   _groupingMessagesDate(data) {

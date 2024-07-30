@@ -71,6 +71,7 @@ export default class View {
     `;
     this.parentElement.innerHTML = "";
     this.parentElement.insertAdjacentHTML("beforeend", markup);
+    feather.replace();
   }
   renderSpinner() {
     if (!this.parentElement) return;
@@ -88,7 +89,7 @@ export default class View {
   // Spinner apenas para os botões
   buttonSpinner() {
     if (!this.buttonElement) return;
-    const markup = `  <div class="button-spinner">
+    const markup = `<div class="button-spinner">
     <div class="btn-spinner"></div>
    </div>`;
     this.buttonElement.insertAdjacentHTML("beforeend", markup);
@@ -96,7 +97,6 @@ export default class View {
   }
   removeButtonSpinner() {
     const spinner = this.buttonElement.querySelector(".button-spinner");
-    console.log(spinner);
     this.buttonElement.removeChild(spinner);
     this.buttonElement.disabled = false;
   }

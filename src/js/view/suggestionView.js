@@ -19,8 +19,9 @@ class SuggestionView extends View {
       target.closest(".overlay-suggestion") ||
       target.closest(".btn-close-suggestion")
     ) {
-      window.location.hash = "";
+      const hash = location.hash;
       history.pushState(null, "", "/");
+      location.hash = hash;
       this._sectionContainer.classList.toggle("hidden");
     }
   }

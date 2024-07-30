@@ -6,8 +6,7 @@ export async function login(email, password) {
     password: password,
   });
   if (error) {
-    console.log(email, password);
-    console.log(error);
+    console.error(error);
     throw new Error(error.message);
   }
   localStorage.setItem("user_id", data.user.id);

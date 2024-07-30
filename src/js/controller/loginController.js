@@ -7,7 +7,7 @@ export const loginCrontroller = async function (email, password) {
     const data = await login(email, password);
     window.location.href = "/"; // ou a URL da sua página de login
   } catch (error) {
-    console.log("error 231232", error);
+    console.log(error);
     throw new Error("Credenciais Inválidos");
   }
 };

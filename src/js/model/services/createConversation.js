@@ -19,7 +19,7 @@ export async function createConversation(userid1, userId2, message) {
 
   // Analisando se já existe uma conversa entre os dois usários
   if (existingConversation) {
-    console.log("Conversation already exists between these users.");
+    
     // Enviando a mensagem a conversa actual
     message && sendMessage(userid1, message, existingConversation.id);
 

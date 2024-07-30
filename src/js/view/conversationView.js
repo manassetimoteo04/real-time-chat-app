@@ -30,7 +30,6 @@ class conversationView extends View {
     if (existingChild) {
       this.parentElement.removeChild(existingChild);
     }
-    console.log(existingChild);
     // Crie o novo elemento HTML
     const newChildHTML = this._settMarkup(data, id, New);
     const newChild = this.createNodeFromString(newChildHTML);

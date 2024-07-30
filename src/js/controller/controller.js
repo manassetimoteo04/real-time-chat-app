@@ -47,7 +47,6 @@ const subscriber = function () {
 
         // Verificar se payload.new existe e possui a propriedade conversation_id
         if (!payload.new || !payload.new.conversation_id) {
-          console.log("Payload ID:", payload.new.conversation_id);
           // return;
         }
 
@@ -172,18 +171,23 @@ const _settMessages = async function (userid) {
 };
 
 const controlHashChange = async function (path, userid) {
-  if ((path === "/" && userid) || (path === "/messages" && userid)) {
+  if ((path === "" && userid) || (path === "messages" && userid)) {
     _settMessages(userid);
   }
-  if (path === "/messages" && userid) {
+  if (path === "messages" && userid) {
     _settMessages(userid);
   }
-  if (path === "/userprofile" && userid) {
+  if (path === "userprofile" && userid) {
     friendProfileView.renderSpinner();
     const user = await getUser2(userid);
-    console.log(user);
+
     friendProfileView.render(user, true);
   }
+};
+
+const logoutController = async function () {
+  logoutView.buttonSpinner();
+  await logout();
 };
 
 const init = function () {
@@ -194,7 +198,7 @@ const init = function () {
   loginView._handleEvent(loginCrontroller);
   SignUpView._handleEvent(signUpController);
   uploadImgView._handleUploadEvent(uploadImgController);
-  logoutView._handleEvent(logout);
+  logoutView._handleEvent(logoutController);
   createConversationView._handlerSendMessage(createConversationController);
   conversationView._handlingEvent(messagesController);
   gettConversationController("render");

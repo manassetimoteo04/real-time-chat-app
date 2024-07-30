@@ -150,7 +150,7 @@
     }
 
     .suggestion-list {
-        overflow: scroll;
+        overflow: initial;
     }
 
     .my-profile-container {

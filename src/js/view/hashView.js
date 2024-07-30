@@ -5,7 +5,8 @@ class HashView extends View {
     ["load", "hashchange", "popstate"].forEach((ev) => {
       window.addEventListener(ev, () => {
         const id = location.hash.slice(1);
-        const path = location.pathname;
+        const url = new URL(location.href).search.slice(1, -1);
+        const path = url;
         handler(path, id);
       });
     });

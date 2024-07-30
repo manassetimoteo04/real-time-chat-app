@@ -8,6 +8,5 @@ export async function getSuggestion() {
   const index = data.findIndex((user) => user.auth_id === id);
   data.splice(index, 1);
 
-  console.log(data, "ID: ", id);
   return data;
 }

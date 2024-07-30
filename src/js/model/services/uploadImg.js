@@ -18,7 +18,7 @@ export async function uploadImage(file) {
       storeImageLink(fileUrl);
     }
   } else {
-    console.log("No file selected");
+    console.log("Nenhum arquivo selecionado");
   }
 }
 

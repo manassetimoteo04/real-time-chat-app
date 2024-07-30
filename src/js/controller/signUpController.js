@@ -4,8 +4,6 @@ export const signUpController = async function (obj) {
   try {
     signUpView.buttonSpinner();
     const data = await signUp(obj);
-
-    console.log(data);
     localStorage.setItem("user_id", data.user.id);
 
     location.href = "/";

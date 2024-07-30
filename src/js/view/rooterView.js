@@ -17,7 +17,14 @@ class RouterView {
       const target = e.target.closest("a");
       if (!target) return;
       const path = target.getAttribute("data-path");
-      history.pushState(null, "", path);
+
+      const currentUrl = window.location.href;
+      const url = new URL(currentUrl);
+      url.search = "";
+      window.history.pushState({}, "", url);
+      url.searchParams.set(path.slice(1), "");
+      window.history.pushState({}, "", url);
+      // history.pushState(null, "", path);
       this.updateContent(path);
     });
     // document.querySelectorAll("a[data-path]").forEach((link) => {
@@ -37,7 +44,7 @@ class RouterView {
       section.classList.add("hide");
     });
 
-    console.log(document.querySelector(".conversation-container"));
+   
 
     switch (path) {
       case "/notification":

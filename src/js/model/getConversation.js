@@ -32,17 +32,12 @@ export async function getConversation() {
     ...(conversations2 || []),
   ];
   // Ordenando pela data
-  const sorted = conversationList.sort(
-    (a, b) => new Date(a.last_msg) - new Date(b.last_msg)
-  );
+  console.log("NORMAL: ", conversationList);
 
-  console.log("NOT: ", conversationList);
-  console.log("YES: ", sorted);
-
-  const list = Array.from(new Set(sorted));
-
+  const SORTED = await buildState(conversationList);
+  SORTED.sort((a, b) => new Date(b.last_msg) - new Date(a.last_msg));
   // Construindo o state para a conversa
-  return await buildState(list);
+  return SORTED;
 }
 
 // Função para pegar apenas uma conversa
@@ -72,9 +67,12 @@ export async function getMessages(id) {
     .from("messages")
     .select("*")
     .eq("conversation_id", id);
+  const SORTED = data.sort(
+    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+  );
 
   if (error) throw new Error(error.message);
-  return data;
+  return SORTED;
 }
 //Função para pegar o usuário
 export async function getUser2(id1, id2) {
@@ -108,12 +106,10 @@ async function buildState(list) {
       try {
         const user = await getUser2(el.user_id1, el.user_id2);
         const msg = await getMessages(el.id);
-        const messages = msg.sort(
-          (a, b) => new Date(a.created_at) - new Date(b.created_at)
-        );
+        msg.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
         const obj = {
           user,
-          message: messages,
+          message: msg,
           id: el.id,
           last_msg: el.last_msg,
         };
@@ -122,6 +118,7 @@ async function buildState(list) {
       } catch (error) {
         console.error("Error building state for conversation:", error);
       }
+      console.log(conversationState);
     })
   );
 
