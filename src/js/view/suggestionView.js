@@ -63,6 +63,46 @@ class SuggestionView extends View {
    </div>
     `;
   }
+  renderSpinner() {
+    if (!this.parentElement) return;
+
+    const markup = `
+  <div class="conversation-skeleton">
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+            <div class="box">
+                <div class="circle"></div>
+                <div class="squared">
+                    <div class="long-sk"></div>
+                    <div class="short-sk"></div>
+
+                </div>
+            </div>
+        </div>`;
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
+  }
 }
 
 export default new SuggestionView();

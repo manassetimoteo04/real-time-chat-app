@@ -63,5 +63,41 @@ class FriendProfileView extends View {
        </div>
     `;
   }
+  renderSpinner() {
+    if (!this.parentElement) return;
+    const markup = `
+    <div class="user-profile-skeleton">
+    <div class="circle"></div>
+    <div class="name-sk"></div>
+    <div class="username-sk"></div>
+    <div class="send-box">
+        <div class="box"></div>
+        <div class="box"></div>
+
+    </div>
+    <div class="load-heading"></div>
+
+    <div class="flex">
+        <div>
+            <div class="cubid"></div>
+            <div class="cubid"></div>
+        </div>
+        <div>
+            <div class="cubid"></div>
+            <div class="cubid"></div>
+        </div>
+        <div>
+            <div class="cubid"></div>
+            <div class="cubid"></div>
+        </div>
+        <div>
+            <div class="cubid"></div>
+            <div class="cubid"></div>
+        </div>
+    </div>
+ </div>`;
+
+    this.parentElement.insertAdjacentHTML("beforeend", markup);
+  }
 }
 export default new FriendProfileView();

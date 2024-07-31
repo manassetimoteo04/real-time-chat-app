@@ -1226,7 +1226,7 @@ form button {
     text-align: center;
 }
 
-.popup button {
+.parentElement .popup button {
     padding: 1rem;
     font-size: inherit;
     color: var(--color-text-dark);
@@ -1243,6 +1243,9 @@ form button {
     position: relative;
 }
 
+.parentElement {
+    position: relative;
+}
 
 /* SKELETON LOADING */
 .conversation-skeleton {
@@ -1251,6 +1254,7 @@ form button {
     background-color: var(--color-light);
     gap: 3rem;
     padding: 2rem;
+
 }
 
 .conversation-skeleton .box {
@@ -1291,6 +1295,90 @@ form button {
     height: 1rem;
     border-radius: 5rem;
     animation: animation 3s linear infinite;
+
+}
+
+.user-profile-skeleton {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-light);
+
+}
+
+.user-profile-skeleton .circle {
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    animation: animation 3s linear infinite;
+    margin-bottom: 3rem;
+}
+
+.user-profile-skeleton .name-sk {
+    width: 20rem;
+    height: 2rem;
+    border-radius: 5rem;
+    animation: animation 1s linear infinite;
+    margin-bottom: 1rem;
+
+}
+
+.user-profile-skeleton .username-sk {
+    width: 15rem;
+    height: 2rem;
+    border-radius: 5rem;
+    animation: animation 1s linear infinite;
+}
+
+.send-box {
+    display: flex;
+    gap: 2rem;
+    margin: 3rem 0;
+    width: 100%;
+}
+
+.send-box .box {
+    width: 20rem;
+    width: 100%;
+
+    height: 4rem;
+    border-radius: 5rem;
+    animation: animation 5s linear infinite;
+}
+
+.load-heading {
+    width: 20rem;
+    height: 3rem;
+    border-radius: 5rem;
+    animation: animation 1s linear infinite;
+    margin-bottom: 3rem;
+    align-self: flex-start;
+
+}
+
+.user-profile-skeleton .flex {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 100%;
+}
+
+.user-profile-skeleton .flex div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-profile-skeleton .flex .cubid {
+    width: 20rem;
+    height: 2rem;
+    border-radius: 5rem;
+    animation: animation 1s linear infinite;
+    margin-bottom: 1rem;
+    align-self: flex-start;
 
 }
 
