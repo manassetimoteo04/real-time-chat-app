@@ -31,6 +31,9 @@ import hashView from "../view/hashView";
 import friendProfileView from "../view/friendProfileView";
 import userProfileView from "../view/userProfileView";
 import { updateProfile } from "../model/services/updateProfile";
+import searchConvView from "../view/searchConvView";
+import { searchConversation } from "../model/searchConversation";
+import searchSuggeView from "../view/searchSuggeView";
 let channel;
 
 // Função para controlar com o real time change
@@ -132,14 +135,36 @@ const gettConversationController = async function (method) {
   const id = localStorage.getItem("user_id");
   if (id) {
     conversationView._clean();
-
     conversationView[method](state, true);
   }
 };
 
+const searchConvController = async function (queryS) {
+  const query = queryS.toLowerCase();
+  conversationView._clean();
+  conversationView.renderSpinner();
+  const data = await searchConversation();
+
+  const result = data.filter((data) =>
+    data.user.full_name.toLowerCase().includes(query)
+  );
+  conversationView._clean();
+  conversationView.render(result, true);
+};
 const ProfileController = async function () {
   const data = await getProfile(localStorage.getItem("user_id"));
   ProfileView._settingMyProfileContent(data);
+};
+
+const seacrhSuggController = async function (queryS) {
+  const query = queryS.toLowerCase();
+  suggestionView._clean();
+  suggestionView.renderSpinner();
+  const data = await getSuggestion();
+  const result = data.filter((data) =>
+    data.full_name.toLowerCase().includes(query)
+  );
+  suggestionView.render(result, true);
 };
 
 const checkAuthentication = async () => {
@@ -219,5 +244,7 @@ const init = function () {
   checkAuthentication();
   hashView._handlingHashEvent(controlHashChange);
   userProfileView.updateProfile(updateProfileControler);
+  searchConvView._handleEvent(searchConvController);
+  searchSuggeView._handleEvent(seacrhSuggController);
 };
 init();
