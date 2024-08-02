@@ -34,6 +34,7 @@ import { updateProfile } from "../model/services/updateProfile";
 import searchConvView from "../view/searchConvView";
 import { searchConversation } from "../model/searchConversation";
 import searchSuggeView from "../view/searchSuggeView";
+import { settRead } from "../model/settRead";
 let channel;
 
 // Função para controlar com o real time change
@@ -46,13 +47,13 @@ const subscriber = function () {
     .channel("custom-all-channel")
     .on(
       "postgres_changes",
-      { event: "*", schema: "public", table: "messages" },
+      { event: "INSERT", schema: "public", table: "messages" },
       async (payload) => {
         const id = location.hash.slice(1);
 
         // Verificar se payload.new existe e possui a propriedade conversation_id
         if (!payload.new || !payload.new.conversation_id) {
-          // return;
+          return;
         }
 
         try {
@@ -113,7 +114,7 @@ const uploadImgController = function (file) {
 };
 
 //Controlador da mensagm
-export const messagesController = async function (id) {
+export const messagesController = async function (id, sender) {
   try {
     messageView._clean();
     messageView.renderSpinner();
@@ -123,6 +124,7 @@ export const messagesController = async function (id) {
     const data = await getMessages(id);
     messageView.render(data, true);
     messageView._scrollConversationContainer();
+    settRead(id, sender);
   } catch (error) {
     console.error(error);
   }
@@ -149,7 +151,9 @@ const searchConvController = async function (queryS) {
     data.user.full_name.toLowerCase().includes(query)
   );
   conversationView._clean();
-  conversationView.render(result, true);
+
+  if (result.length > 0) conversationView.render(result, true);
+  if (result.length < 0) conversationView.renderError();
 };
 const ProfileController = async function () {
   const data = await getProfile(localStorage.getItem("user_id"));
@@ -164,7 +168,8 @@ const seacrhSuggController = async function (queryS) {
   const result = data.filter((data) =>
     data.full_name.toLowerCase().includes(query)
   );
-  suggestionView.render(result, true);
+  if (result.length > 0) suggestionView.render(result, true);
+  if (result.length < 0) suggestionView.renderError();
 };
 
 const checkAuthentication = async () => {

@@ -89,7 +89,16 @@ class MessageView extends View {
     <div class="${
       data.sender_id === this.id ? "sent-message" : "received-message"
     }"><span class="text-message">${data.content}</span>
-     <span class="message-time">${this._settMessageTime(data)}</span>
+
+     <span class="message-time">${this._settMessageTime(data)} ${
+      data.sender_id === this.id && data.is_read
+        ? `
+        <span class="check-box">
+        <i data-feather="check"></i>
+        </span>
+      `
+        : ""
+    }</span>
      </div>
     `;
   }

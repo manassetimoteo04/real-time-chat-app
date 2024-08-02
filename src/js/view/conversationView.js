@@ -16,9 +16,16 @@ class conversationView extends View {
       const id = target.dataset.id;
       const userId = target.dataset.user;
       location.hash = userId;
-      handler(id);
+      handler(id, userId);
       document.body.classList.add("show");
+      this._readMsg(target, this.parentElement);
     });
+  }
+  _readMsg(trgt, parentElement) {
+    const existingChild = trgt.querySelector(`.unread-number`);
+    if (existingChild) {
+      existingChild.style.display = "none";
+    }
   }
 
   // Actualizando a lista de conversa com base a mudança de estado no banco de dados
@@ -96,6 +103,24 @@ class conversationView extends View {
       ? data.user.full_name.slice(0, 25) + " ..."
       : data.user.full_name;
   }
+  _settUnread(data, New) {
+    if (!New) {
+      const sum = data.message.reduce((accumulator, currentValue) => {
+        if (!currentValue.is_read) return accumulator + 1;
+        if (currentValue.is_read) return 0;
+      }, 0);
+      return data.message.slice(-1)[0].sender_id !== this.myId && sum > 0
+        ? `<span class="unread-number" id="${data.message.slice(-1)[0].id}">${
+            sum > 9 ? "9+" : sum
+          }</span>`
+        : "";
+    }
+    if (New) {
+      return New.sender_id !== this.myId
+        ? `<span class="unread-number">1</span>`
+        : "";
+    }
+  }
   _settMarkup(data, id, New) {
     return `
     <div class="message-box ${id}" data-id="${data.id}" data-user="${
@@ -112,9 +137,11 @@ class conversationView extends View {
             )}</span>
         </div>
         <div>
-            <span class="last-message">${
+            <span class="last-message"> 
+            ${
               data.message.slice(-1)[0].sender_id === this.myId ? "Eu: " : ""
             } ${this._cutMsg(New, data)}</span>
+            ${this._settUnread(data, New)}
         </div>
               </div>
 

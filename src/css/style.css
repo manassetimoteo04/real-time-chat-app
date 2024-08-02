@@ -265,6 +265,20 @@ aside {
     color: var(--color-rose-dark);
 }
 
+.unread-number {
+    padding: 0.2rem;
+    width: 2rem;
+    height: 2rem;
+    font-weight: 600;
+    border-radius: 50%;
+    display: inline-block;
+    color: var(--color-light);
+    background-color: red;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .messages-list {
     height: 100%;
@@ -1201,6 +1215,7 @@ form button {
     display: flex;
     gap: 0.5rem;
     width: 100%;
+    flex-direction: column;
 }
 
 .popup .text {
@@ -1241,6 +1256,7 @@ form button {
     background-color: var(--color-primary) !important;
     color: var(--color-light) !important;
     position: relative;
+    overflow: hidden;
 }
 
 .parentElement {
