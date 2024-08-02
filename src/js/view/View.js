@@ -38,6 +38,7 @@ export default class View {
   render(data, render = false) {
     if (!render) return;
     if (!this.parentElement) return;
+    console.log(data);
 
     const markup = this.generateMarkup(data);
     this._clean();

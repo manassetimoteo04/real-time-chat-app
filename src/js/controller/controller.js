@@ -35,6 +35,10 @@ import searchConvView from "../view/searchConvView";
 import { searchConversation } from "../model/searchConversation";
 import searchSuggeView from "../view/searchSuggeView";
 import { settRead } from "../model/settRead";
+import {
+  sendNotification,
+  askNotificationPermission,
+} from "../model/services/notification";
 let channel;
 
 // Função para controlar com o real time change
@@ -60,12 +64,25 @@ const subscriber = function () {
           const data = await getSingleConversation(payload.new.conversation_id);
           updateConversation(payload, data);
           updateMessageContainer(payload, data);
+          controllNotification(payload);
         } catch (error) {
           console.error("Erro ao atualizar a conversa:", error);
         }
       }
     )
     .subscribe();
+};
+
+const controllNotification = async function (payload) {
+  const id = localStorage.getItem("user_id");
+  if (payload.sender_id === id) return;
+  const data = await getProfile(payload.new.sender_id);
+  const options = {
+    icon: data.profile_img, // Ícone opcional
+    tag: "",
+    id: data.auth_id,
+  };
+  sendNotification(data.full_name, payload.new.content, options);
 };
 
 // Função para controlar a mudança de conversa ao receber novo dados inserido no banco de dados
@@ -251,5 +268,6 @@ const init = function () {
   userProfileView.updateProfile(updateProfileControler);
   searchConvView._handleEvent(searchConvController);
   searchSuggeView._handleEvent(seacrhSuggController);
+  askNotificationPermission();
 };
 init();

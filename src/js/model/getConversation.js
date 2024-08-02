@@ -89,10 +89,13 @@ export async function getUser2(id1, id2) {
     .select()
     .eq("auth_id", userId);
 
-  if (error) throw new Error(error.message);
-  if (data.length === 0) {
-    return new Error("No user found with the given auth_id");
+  if (error) {
+    throw new Error(error.message);
   }
+  console.error(data);
+  // if (data.length === 0) {
+  //   return new Error("No user found with the given auth_id");
+  // }
   if (data.length > 1)
     throw new Error("Multiple users found with the same auth_id");
 
